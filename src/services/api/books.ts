@@ -1,5 +1,5 @@
+import { BookDetailResponse, BooksListResponse, BooksParams } from "../types/book";
 import api from "./axios";
-import { BooksListResponse, BookDetailResponse, BooksParams } from "../types/book";
 
 async function list(params: BooksParams = {}): Promise<BooksListResponse> {
   const { page = 1, limit = 5, text } = params;

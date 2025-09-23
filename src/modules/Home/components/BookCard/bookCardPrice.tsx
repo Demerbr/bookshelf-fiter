@@ -1,5 +1,3 @@
-import { useBookCardContext } from "./bookCardContext";
-
 interface BookCardPriceProps {
   currentPrice?: string;
   originalPrice?: string;
@@ -13,8 +11,6 @@ export function BookCardPrice({
   showOriginalPrice = true, 
   className 
 }: BookCardPriceProps) {
-  const { book } = useBookCardContext();
-  
   return (
     <div className={`flex items-center space-x-2 ${className || ''}`}>
       <span className="text-lg font-bold text-gray-900">{currentPrice}</span>

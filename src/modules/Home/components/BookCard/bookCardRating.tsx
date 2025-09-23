@@ -1,5 +1,4 @@
 import { Star } from "lucide-react";
-import { useBookCardContext } from "./bookCardContext";
 
 interface BookCardRatingProps {
   rating?: number;
@@ -14,8 +13,6 @@ export function BookCardRating({
   showNumber = true, 
   className 
 }: BookCardRatingProps) {
-  const { book } = useBookCardContext();
-  
   return (
     <div className={`flex items-center space-x-1 ${className || ''}`}>
       {showStars && (

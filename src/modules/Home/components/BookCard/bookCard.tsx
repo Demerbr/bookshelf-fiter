@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode } from "react";
 import { Book } from "@/services/types/book";
 import { BookCardContext } from "./bookCardContext";
