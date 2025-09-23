@@ -1,36 +1,162 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📚 Bookshelf - Frontend
 
-## Getting Started
+Uma aplicação Next.js moderna para listagem e busca de livros, inspirada na interface da Amazon.
 
-First, run the development server:
+## 🚀 Funcionalidades
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- ✅ Listagem paginada de livros
+- ✅ Busca por texto
+- ✅ Visualização de detalhes
+- ✅ Interface responsiva
+- ✅ Loading states e tratamento de erros
+- ✅ Cache inteligente com React Query
+- ✅ TypeScript completo
+
+## 🛠 Tecnologias
+
+- **Next.js 15** - Framework React
+- **TypeScript** - Tipagem estática
+- **Tailwind CSS** - Estilização
+- **React Query** - Gerenciamento de estado servidor
+- **Axios** - Cliente HTTP
+- **Lucide React** - Ícones
+
+## 📁 Estrutura do Projeto
+
+```
+src/
+├── app/                    # App Router do Next.js
+│   ├── components/         # Componentes específicos da app
+│   ├── books/[id]/        # Página de detalhes do livro
+│   ├── layout.tsx         # Layout principal
+│   ├── page.tsx          # Página inicial
+│   └── providers.tsx     # Providers (React Query)
+├── components/           # Componentes reutilizáveis
+│   ├── Header/          # Cabeçalho
+│   ├── BookCard.tsx    # Card do livro
+│   ├── SearchBar.tsx   # Barra de busca
+│   └── ui/             # Componentes base (shadcn/ui)
+├── queries/              # React Query hooks
+│   ├── useBooksListQuery.ts
+│   ├── useBookDetailQuery.ts
+│   └── index.ts
+├── services/           # Camada de serviços
+│   ├── api/           # Cliente HTTP
+│   │   ├── axios.ts   # Configuração do Axios
+│   │   ├── books.ts   # API de livros
+│   │   └── index.ts   # Exportações centralizadas
+│   └── types/         # Tipos TypeScript
+│       └── book.ts    # Tipos relacionados a livros
+└── lib/               # Utilitários
+    └── utils.ts       # Funções auxiliares
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Como Executar
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Instalar dependências:**
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Configurar variáveis de ambiente:**
+   Crie um arquivo `.env.local` na raiz do projeto:
+   ```env
+   NEXT_PUBLIC_API_URL=http://localhost:3000
+   ```
 
-## Learn More
+3. **Executar o servidor de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Acessar a aplicação:**
+   Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔧 Configuração da API
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+A aplicação está configurada para consumir uma API REST em `http://localhost:3000`. 
 
-## Deploy on Vercel
+### Endpoints disponíveis:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `GET /books?page=1&limit=5` - Listar livros paginados
+- `GET /books/:id` - Detalhes do livro
+- `GET /books?text=search&page=1&limit=5` - Buscar livros por texto
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Estrutura de resposta:
+
+```typescript
+// GET /books (listagem)
+{
+  "data": [
+    {
+      "id": "string",
+      "title": "string",
+      "author": "string",
+      "publisher": "string",
+      "year": number,
+      "coverUrl": "string",
+      "description": "string",
+      "isbn": "string",
+      "pages": number,
+      "language": "string"
+    }
+  ],
+  "hasMore": boolean,
+  "page": number,
+  "limit": number
+}
+
+// GET /books/:id (detalhes)
+{
+  "data": {
+    "id": "string",
+    "title": "string",
+    "author": "string",
+    "publisher": "string",
+    "year": number,
+    "coverUrl": "string",
+    "description": "string",
+    "isbn": "string",
+    "pages": number,
+    "language": "string"
+  }
+}
+```
+
+## 🎨 Design System
+
+A aplicação utiliza um design system baseado nas cores da Amazon:
+
+- **Primary**: `#146eb4` (Azul Amazon)
+- **Accent**: `#ffd814` (Amarelo Amazon)
+- **Dark**: `#232f3e` (Cinza escuro)
+- **Light**: `#e3e6e6` (Cinza claro)
+- **Background**: `#ffffff` (Branco)
+
+## 📱 Responsividade
+
+A interface é totalmente responsiva:
+- **Mobile**: Layout em coluna única
+- **Tablet**: Grid 2 colunas
+- **Desktop**: Grid 3 colunas
+
+## 🔄 Cache e Performance
+
+- **React Query**: Cache inteligente com invalidação automática
+- **keepPreviousData**: Evita flicker na paginação
+- **staleTime**: 5 minutos para listas, 10 minutos para detalhes
+- **refetchInterval**: 30 segundos para atualizações automáticas
+
+## 🧪 Próximos Passos
+
+- [ ] Implementar favoritos (localStorage)
+- [ ] Adicionar filtros avançados
+- [ ] Implementar infinite scroll
+- [ ] Adicionar testes automatizados
+- [ ] Implementar acessibilidade (ARIA)
+- [ ] Adicionar internacionalização
+- [ ] Implementar PWA
+
+## 📄 Licença
+
+MIT License
