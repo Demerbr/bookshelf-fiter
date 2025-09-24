@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchContext } from "@/contexts/SearchContext";
+import { useSearch } from "@/hooks/useSearch";
 import { ErrorState } from "../ErrorState";
 import { LoadingState } from "../LoadingState";
 import { ResultsCounter } from "../ResultsCounter";
@@ -16,7 +16,7 @@ export function BooksDataProvider() {
     error, 
     isNotFound,
     searchQuery 
-  } = useSearchContext();
+  } = useSearch();
 
   const booksData = searchResults;
 
