@@ -3,11 +3,9 @@ import { useBookDetailQuery } from "@/queries";
 import { BookDetailLoading } from "./components/BookDetailLoading";
 import { BookDetailError } from "./components/BookDetailError";
 import { BookDetailContent } from "./components/BookDetailContent";
-import { use } from "react";
 
 export const BookDetailModule = ({ params }: BookDetailPageProps) => {
-  const resolvedParams = use(params);
-  const { data: book, isLoading, isError } = useBookDetailQuery(resolvedParams.id);
+  const { data: book, isLoading, isError } = useBookDetailQuery(params.id);
 
   if (isLoading) {
     return <BookDetailLoading />;

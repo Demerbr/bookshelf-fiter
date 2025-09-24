@@ -1,5 +1,5 @@
 export interface BookDetailPageProps {
-    params: Promise<{
+    params: {
       id: string;
-    }>;
+    };
   }
