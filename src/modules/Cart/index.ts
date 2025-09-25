@@ -1,0 +1,2 @@
+export { CartModule } from './CartModule';
+

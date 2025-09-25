@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { useBookCardContext } from "./bookCardContext";
+import { useCart } from "@/hooks/useCart";
 
 interface BookCardActionProps {
   children?: React.ReactNode;
@@ -8,18 +10,41 @@ interface BookCardActionProps {
 }
 
 export function BookCardAction({ 
-  children = "Adicionar ao Carrinho", 
+  children, 
   variant = "default",
   className,
   onClick 
 }: BookCardActionProps) {
+  const { book } = useBookCardContext();
+  const { addBookToCart, isInCart, getItemQuantity } = useCart();
+  
+  const isBookInCart = isInCart(book.id);
+  const quantity = getItemQuantity(book.id);
+
+  const handleAddToCart = () => {
+    if (onClick) {
+      onClick();
+    } else {
+      addBookToCart(book);
+    }
+  };
+
+  const getButtonText = () => {
+    if (children) return children;
+    if (isBookInCart) {
+      return quantity > 1 ? `${quantity} no carrinho` : "No carrinho";
+    }
+    return "Adicionar ao Carrinho";
+  };
+
   return (
     <Button 
       className={`w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-medium text-sm py-2 rounded-md transition-colors ${className || ''}`}
       variant={variant}
-      onClick={onClick}
+      onClick={handleAddToCart}
+      disabled={isBookInCart && quantity >= 10} // Limite de 10 itens
     >
-      {children}
+      {getButtonText()}
     </Button>
   );
 }
