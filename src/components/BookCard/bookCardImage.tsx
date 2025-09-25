@@ -6,10 +6,23 @@ import { useBookCardContext } from "./bookCardContext";
 interface BookCardImageProps {
   showFavoriteButton?: boolean;
   className?: string;
+  onFavoriteClick?: (bookId: string) => void;
+  isFavorite?: boolean;
 }
 
-export function BookCardImage({ showFavoriteButton = true, className }: BookCardImageProps) {
+export function BookCardImage({ 
+  showFavoriteButton = true, 
+  className, 
+  onFavoriteClick,
+  isFavorite = false 
+}: BookCardImageProps) {
   const { book, cleanImageUrl } = useBookCardContext();
+
+  const handleToggleFavorite = (e: React.MouseEvent) => {
+    e.preventDefault(); // Previne navegação quando clica no coração
+    e.stopPropagation();
+    onFavoriteClick?.(book.id);
+  };
   
   return (
     <div className={`relative mb-3 ${className || ''}`}>
@@ -32,8 +45,14 @@ export function BookCardImage({ showFavoriteButton = true, className }: BookCard
       </Link>
       
       {showFavoriteButton && (
-        <button className="absolute top-2 right-2 p-1.5 bg-white rounded-full shadow-sm hover:bg-gray-50 transition-colors">
-          <Heart className="w-4 h-4 text-gray-400 hover:text-red-500" />
+        <button 
+          onClick={handleToggleFavorite}
+          className={`absolute top-2 right-2 p-1.5 bg-white rounded-full shadow-sm hover:bg-gray-50 transition-colors ${
+            isFavorite ? 'text-red-500' : 'text-gray-400 hover:text-red-500'
+          }`}
+          aria-label={isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+        >
+          <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
         </button>
       )}
     </div>

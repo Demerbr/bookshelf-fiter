@@ -50,7 +50,7 @@ export const HomeModule = () => {
             {isNotFound && (
               <div className="text-center py-8">
                 <p className="text-gray-600 text-lg">
-                  Nenhum livro encontrado para "{searchQuery}"
+                  Nenhum livro encontrado para &quot;{searchQuery}&quot;
                 </p>
               </div>
             )}

@@ -16,7 +16,7 @@ export const NotFoundState = ({ searchQuery, onClearSearch }: NotFoundStateProps
             Nenhum resultado encontrado
           </h2>
           <p className="text-gray-500 mb-6">
-            Não encontramos livros para "{searchQuery}". 
+            Não encontramos livros para &quot;{searchQuery}&quot;. 
             Tente usar palavras-chave diferentes ou verifique a ortografia.
           </p>
         </div>

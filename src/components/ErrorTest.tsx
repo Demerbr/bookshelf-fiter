@@ -21,7 +21,7 @@ function ErrorTrigger() {
       </p>
       <Button
         onClick={() => setShouldThrow(true)}
-        variant="destructive"
+        variant="outline"
         size="sm"
       >
         Simular Erro
