@@ -24,4 +24,6 @@ export type BooksParams = {
   page?: number;
   limit?: number;
   text?: string;
+  sortBy?: 'name' | 'price' | 'date';
+  sortOrder?: 'ASC' | 'DESC';
 };

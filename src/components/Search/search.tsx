@@ -89,17 +89,17 @@ export const SearchComponent = ({
           placeholder={placeholder}
           value={query}
           onChange={handleInputChange}
-          className="bg-white w-64 rounded-r-none h-full border-none pr-10"
+          className="bg-white w-28 sm:w-32 md:w-40 lg:w-48 xl:w-64 rounded-r-none h-full border-none pr-6 sm:pr-8"
         />
         {query && (
           <CircleX 
-            className="absolute right-12 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 hover:text-gray-600 cursor-pointer z-10"
+            className="absolute right-8 sm:right-10 top-1/2 -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400 hover:text-gray-600 cursor-pointer z-10"
             onClick={handleClear}
           />
         )}
         <Button
           type="submit"
-          className="h-full w-12 rounded-l-none rounded-r-md border-none flex items-center justify-center"
+          className="h-full w-6 sm:w-8 md:w-10 lg:w-12 rounded-l-none rounded-r-md border-none flex items-center justify-center"
         >
           <Search />
         </Button>

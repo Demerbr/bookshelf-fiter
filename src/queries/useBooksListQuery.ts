@@ -3,10 +3,10 @@ import { api } from "@/services/api";
 import { BooksListResponse, BooksParams } from "@/services/types/book";
 
 export function useBooksListQuery(params: BooksParams = {}) {
-  const { page = 1, limit = 5, text } = params;
+  const { page = 1, limit = 4, text, sortBy, sortOrder } = params;
   
   return useQuery<BooksListResponse>({
-    queryKey: ["books-list", { page, limit, text }],
+    queryKey: ["books-list", { page, limit, text, sortBy, sortOrder }],
     queryFn: async (): Promise<BooksListResponse> => {
       try {
         return await api.books.list(params);
@@ -16,7 +16,7 @@ export function useBooksListQuery(params: BooksParams = {}) {
           data: [],
           hasMore: false,
           page: "1",
-          limit: "5",
+          limit: "4",
         };
       }
     },

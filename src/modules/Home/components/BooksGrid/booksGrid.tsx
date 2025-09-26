@@ -12,7 +12,7 @@ export function BooksGrid({ books }: BooksGridProps) {
 
   return (
     <ErrorBoundary>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 md:gap-4 mb-8 max-w-xl mx-auto px-1 sm:px-2 md:px-4">
         {books.map((book) => (
           <BookCard key={book.id} book={book}>
             <BookCardImage 

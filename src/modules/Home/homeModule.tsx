@@ -7,6 +7,7 @@ import { ResultsCounter } from "./components/ResultsCounter";
 import { BooksGrid } from "./components/BooksGrid";
 import { PaginationWrapper } from "./components/PaginationWrapper";
 import { EmptyState } from "./components/EmptyState";
+import { SortDropdown } from "@/components/SortDropdown";
 
 export const HomeModule = () => {
   const { 
@@ -15,7 +16,9 @@ export const HomeModule = () => {
     isError, 
     error, 
     isNotFound,
-    searchQuery 
+    searchQuery,
+    handleSort,
+    currentSort
   } = useSearch();
 
   const booksData = searchResults;
@@ -25,12 +28,24 @@ export const HomeModule = () => {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen">
-      <div className="container mx-auto px-4 py-8">
-        <ResultsCounter 
-          count={booksData?.data?.length} 
-          isLoading={isLoading} 
-        />
+    <div className="bg-gray-50 flex-1 w-full">
+      <div className="container mx-auto px-1 sm:px-2 md:px-4 lg:px-6 xl:px-8 py-1 sm:py-2 md:py-4 lg:py-6 xl:py-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <ResultsCounter 
+            count={booksData?.data?.length} 
+            isLoading={isLoading} 
+          />
+          
+          {booksData?.data && booksData.data.length > 0 && (
+            <div className="w-full sm:w-auto">
+              <SortDropdown 
+                onSortChange={handleSort}
+                currentSort={currentSort}
+                className="w-full sm:w-64"
+              />
+            </div>
+          )}
+        </div>
 
         {isLoading ? (
           <LoadingState />
