@@ -23,7 +23,7 @@ export const SearchComponent = ({
   value = ""
 }: SearchProps) => {
   const [query, setQuery] = useState(value);
-  const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [, setDebouncedQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const syncWithExternalValue = () => {
@@ -77,31 +77,31 @@ export const SearchComponent = ({
   };
 
   useEffect(syncWithExternalValue, [value]);
-  useEffect(focusAndPositionCursor, [value]);
+  useEffect(focusAndPositionCursor, [value, hasValue, positionCursorAtEnd]);
   useEffect(debounceSearch, [query, onSearch]);
 
   return (
     <form onSubmit={handleSubmit} className={className}>
-      <div className="h-12 gap-0 flex w-fit relative">
+      <div className="h-10 flex w-full relative">
         <Input
           ref={inputRef}
           type="text"
           placeholder={placeholder}
           value={query}
           onChange={handleInputChange}
-          className="bg-white w-28 sm:w-32 md:w-40 lg:w-48 xl:w-64 rounded-r-none h-full border-none pr-6 sm:pr-8"
+          className="bg-white w-full rounded-r-none h-full border-amazon-border focus:border-amazon-orange focus:ring-amazon-orange pr-10 text-sm"
         />
         {query && (
           <CircleX 
-            className="absolute right-8 sm:right-10 top-1/2 -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400 hover:text-gray-600 cursor-pointer z-10"
+            className="absolute right-10 top-1/2 -translate-y-1/2 w-4 h-4 text-amazon-text-light hover:text-amazon-text cursor-pointer z-10"
             onClick={handleClear}
           />
         )}
         <Button
           type="submit"
-          className="h-full w-6 sm:w-8 md:w-10 lg:w-12 rounded-l-none rounded-r-md border-none flex items-center justify-center"
+          className="h-full w-10 rounded-l-none rounded-r-md bg-amazon-orange hover:bg-amazon-orange-hover border-none flex items-center justify-center"
         >
-          <Search />
+          <Search className="w-4 h-4 text-white" />
         </Button>
       </div>
     </form>

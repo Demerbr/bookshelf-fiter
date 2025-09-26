@@ -8,7 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-amazon-sans);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -44,48 +44,63 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-    /* Tailwind custom colors */
-  --color-brand-primary: #146eb4;
-  --color-brand-accent: #ffd814;
-  --color-brand-dark: #232f3e;
-  --color-brand-light: #e3e6e6;
-  --color-brand-background: #ffffff;
+  /* Amazon-inspired color palette */
+  --color-amazon-orange: #ff9900;
+  --color-amazon-orange-hover: #e8890c;
+  --color-amazon-orange-light: #ffb84d;
+  --color-amazon-blue: #007185;
+  --color-amazon-blue-hover: #005f6b;
+  --color-amazon-dark: #131921;
+  --color-amazon-dark-light: #232f3e;
+  --color-amazon-gray: #f3f3f3;
+  --color-amazon-gray-light: #fafafa;
+  --color-amazon-gray-dark: #565959;
+  --color-amazon-gray-darker: #0f1111;
+  --color-amazon-white: #ffffff;
+  --color-amazon-border: #d5d9d9;
+  --color-amazon-text: #0f1111;
+  --color-amazon-text-secondary: #565959;
+  --color-amazon-text-light: #767676;
+  --color-amazon-success: #007600;
+  --color-amazon-error: #b12704;
+  
+  /* Font families */
+  --font-amazon-sans: var(--font-amazon-sans);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.13 0.028 261.692);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.13 0.028 261.692);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.13 0.028 261.692);
-  --primary: oklch(0.21 0.034 264.665);
-  --primary-foreground: oklch(0.985 0.002 247.839);
-  --secondary: oklch(0.967 0.003 264.542);
-  --secondary-foreground: oklch(0.21 0.034 264.665);
-  --muted: oklch(0.967 0.003 264.542);
-  --muted-foreground: oklch(0.551 0.027 264.364);
-  --accent: oklch(0.967 0.003 264.542);
-  --accent-foreground: oklch(0.21 0.034 264.665);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.928 0.006 264.531);
-  --input: oklch(0.928 0.006 264.531);
-  --ring: oklch(0.707 0.022 261.325);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0.002 247.839);
-  --sidebar-foreground: oklch(0.13 0.028 261.692);
-  --sidebar-primary: oklch(0.21 0.034 264.665);
-  --sidebar-primary-foreground: oklch(0.985 0.002 247.839);
-  --sidebar-accent: oklch(0.967 0.003 264.542);
-  --sidebar-accent-foreground: oklch(0.21 0.034 264.665);
-  --sidebar-border: oklch(0.928 0.006 264.531);
-  --sidebar-ring: oklch(0.707 0.022 261.325);
-
+  --radius: 0.5rem;
+  --background: #ffffff;
+  --foreground: #0f1111;
+  --card: #ffffff;
+  --card-foreground: #0f1111;
+  --popover: #ffffff;
+  --popover-foreground: #0f1111;
+  --primary: #ff9900;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f3f3;
+  --secondary-foreground: #0f1111;
+  --muted: #f3f3f3;
+  --muted-foreground: #565959;
+  --accent: #ff9900;
+  --accent-foreground: #ffffff;
+  --destructive: #b12704;
+  --border: #d5d9d9;
+  --input: #ffffff;
+  --ring: #ff9900;
+  --chart-1: #ff9900;
+  --chart-2: #007185;
+  --chart-3: #131921;
+  --chart-4: #565959;
+  --chart-5: #f3f3f3;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f1111;
+  --sidebar-primary: #ff9900;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f3f3f3;
+  --sidebar-accent-foreground: #0f1111;
+  --sidebar-border: #d5d9d9;
+  --sidebar-ring: #ff9900;
 }
 
 .dark {
@@ -127,6 +142,31 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-family: var(--font-amazon-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  /* Amazon-style typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium text-amazon-text;
+  }
+  
+  /* Amazon-style buttons */
+  .btn-amazon-primary {
+    @apply bg-amazon-orange hover:bg-amazon-orange-hover text-white font-medium px-4 py-2 rounded-md transition-colors duration-200;
+  }
+  
+  .btn-amazon-secondary {
+    @apply bg-white border border-amazon-border hover:bg-amazon-gray text-amazon-text font-medium px-4 py-2 rounded-md transition-colors duration-200;
+  }
+  
+  /* Amazon-style cards */
+  .card-amazon {
+    @apply bg-white border border-amazon-border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+  
+  /* Amazon-style input */
+  .input-amazon {
+    @apply border border-amazon-border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amazon-orange focus:border-transparent;
   }
 }

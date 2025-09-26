@@ -29,9 +29,9 @@ export const HomeModule = () => {
   }
 
   return (
-    <div className="bg-gray-50 flex-1 w-full">
-      <div className="container mx-auto px-1 sm:px-2 md:px-4 lg:px-6 xl:px-8 py-1 sm:py-2 md:py-4 lg:py-6 xl:py-8">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+    <div className="bg-amazon-gray-light flex-1 w-full min-h-screen">
+      <div className="container mx-auto px-4 lg:px-6 py-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <ResultsCounter 
             count={allBooks.length} 
             isLoading={isLoading} 
@@ -64,10 +64,15 @@ export const HomeModule = () => {
             )}
 
             {isNotFound && (
-              <div className="text-center py-8">
-                <p className="text-gray-600 text-lg">
-                  Nenhum livro encontrado para &quot;{searchQuery}&quot;
-                </p>
+              <div className="text-center py-12">
+                <div className="bg-white rounded-lg shadow-sm border border-amazon-border p-8 max-w-md mx-auto">
+                  <p className="text-amazon-text-secondary text-lg mb-2">
+                    Nenhum livro encontrado
+                  </p>
+                  <p className="text-amazon-text-light">
+                    para &quot;{searchQuery}&quot;
+                  </p>
+                </div>
               </div>
             )}
 

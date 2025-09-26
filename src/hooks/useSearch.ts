@@ -41,7 +41,7 @@ export function useSearch() {
 
   // Flatten all pages into a single array of books
   const allBooks = useMemo(() => {
-    return data?.pages.flatMap((page: any) => page.data) || [];
+    return data?.pages.flatMap((page: { data: Book[] }) => page.data) || [];
   }, [data]);
 
   const navigateToSearch = (searchQuery: string) => {

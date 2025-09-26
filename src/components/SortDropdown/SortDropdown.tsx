@@ -45,11 +45,11 @@ export function SortDropdown({ onSortChange, currentSort, className = "" }: Sort
     <div className={`relative ${className}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        className="flex items-center justify-between w-full px-4 py-2 text-sm bg-white border border-amazon-border rounded-md shadow-sm hover:bg-amazon-gray focus:outline-none focus:ring-2 focus:ring-amazon-orange focus:border-amazon-orange transition-colors"
       >
-        <span className="text-gray-700">{getCurrentLabel()}</span>
+        <span className="text-amazon-text">{getCurrentLabel()}</span>
         <ChevronDown 
-          className={`w-4 h-4 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} 
+          className={`w-4 h-4 text-amazon-text-light transition-transform ${isOpen ? 'rotate-180' : ''}`} 
         />
       </button>
 
@@ -62,15 +62,15 @@ export function SortDropdown({ onSortChange, currentSort, className = "" }: Sort
           />
           
           {/* Dropdown menu */}
-          <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-md shadow-lg z-20 max-h-60 overflow-y-auto">
+          <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-amazon-border rounded-md shadow-lg z-20 max-h-60 overflow-y-auto">
             {sortOptions.map((option) => (
               <button
                 key={option.value}
                 onClick={() => handleOptionClick(option)}
-                className={`w-full px-3 py-2 text-left text-sm hover:bg-gray-100 focus:outline-none focus:bg-gray-100 ${
+                className={`w-full px-4 py-2 text-left text-sm hover:bg-amazon-gray focus:outline-none focus:bg-amazon-gray transition-colors ${
                   currentSort?.sortBy === option.sortBy && currentSort?.sortOrder === option.sortOrder
-                    ? 'bg-blue-50 text-blue-700'
-                    : 'text-gray-700'
+                    ? 'bg-amazon-orange/10 text-amazon-orange font-medium'
+                    : 'text-amazon-text'
                 }`}
               >
                 {option.label}

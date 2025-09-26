@@ -31,7 +31,7 @@ export function BookCard({ book, children, className }: BookCardProps) {
 
   return (
     <BookCardContext.Provider value={contextValue}>
-      <div className={`bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 p-4 group ${className || ''}`}>
+      <div className={`bg-white border border-amazon-border rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 group hover:border-amazon-orange/30 ${className || ''}`}>
         {children}
       </div>
     </BookCardContext.Provider>

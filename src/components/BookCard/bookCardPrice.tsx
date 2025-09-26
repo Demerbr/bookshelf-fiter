@@ -13,9 +13,9 @@ export function BookCardPrice({
 }: BookCardPriceProps) {
   return (
     <div className={`flex items-center space-x-2 ${className || ''}`}>
-      <span className="text-lg font-bold text-gray-900">{currentPrice}</span>
+      <span className="text-lg font-bold text-amazon-text">{currentPrice}</span>
       {showOriginalPrice && (
-        <span className="text-sm text-gray-500 line-through">{originalPrice}</span>
+        <span className="text-sm text-amazon-text-light line-through">{originalPrice}</span>
       )}
     </div>
   );
