@@ -1,6 +1,6 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useBooksListQuery } from "@/queries";
+import { useBooksInfiniteQuery } from "@/queries";
 import { BooksParams } from "@/services/types/book";
 
 const DEFAULT_PAGE = 1;
@@ -20,8 +20,7 @@ export function useSearch() {
     setIsSearching(query.trim() !== "");
   };
 
-  const buildQueryParams = (): BooksParams => ({
-    page: DEFAULT_PAGE,
+  const buildQueryParams = () => ({
     limit: DEFAULT_LIMIT,
     text: query || undefined,
     sortBy: sortBy || undefined,
@@ -29,7 +28,21 @@ export function useSearch() {
   });
 
   const queryParams = buildQueryParams();
-  const { data, isLoading, isError, error, refetch } = useBooksListQuery(queryParams);
+  const { 
+    data, 
+    isLoading, 
+    isError, 
+    error, 
+    refetch,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useBooksInfiniteQuery(queryParams);
+
+  // Flatten all pages into a single array of books
+  const allBooks = useMemo(() => {
+    return data?.pages.flatMap((page: any) => page.data) || [];
+  }, [data]);
 
   const navigateToSearch = (searchQuery: string) => {
     const params = new URLSearchParams();
@@ -65,7 +78,7 @@ export function useSearch() {
            !isLoading && 
            !isError && 
            query.trim() !== "" &&
-           data?.data?.length === 0;
+           allBooks.length === 0;
   };
 
   useEffect(updateSearchingState, [query]);
@@ -78,11 +91,15 @@ export function useSearch() {
     currentSort: sortBy && sortOrder ? { sortBy, sortOrder } : undefined,
     isSearching,
     isNotFound: isNotFound(),
-    searchResults: data,
+    searchResults: { data: allBooks, hasMore: hasNextPage },
+    allBooks,
     isLoading,
     isError,
     error,
     refetch,
     hasQuery,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
   };
 }

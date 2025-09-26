@@ -1,2 +1,2 @@
-export { useBooksListQuery } from './useBooksListQuery';
+export { useBooksInfiniteQuery } from './useBooksInfiniteQuery';
 export { useBookDetailQuery } from './useBookDetailQuery';

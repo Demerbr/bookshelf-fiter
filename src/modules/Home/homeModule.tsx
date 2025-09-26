@@ -5,23 +5,24 @@ import { ErrorState } from "./components/ErrorState";
 import { LoadingState } from "./components/LoadingState";
 import { ResultsCounter } from "./components/ResultsCounter";
 import { BooksGrid } from "./components/BooksGrid";
-import { PaginationWrapper } from "./components/PaginationWrapper";
 import { EmptyState } from "./components/EmptyState";
 import { SortDropdown } from "@/components/SortDropdown";
+import { InfiniteScrollWrapper } from "@/components/InfiniteScrollWrapper";
 
 export const HomeModule = () => {
   const { 
-    searchResults, 
+    allBooks,
     isLoading, 
     isError, 
     error, 
     isNotFound,
     searchQuery,
     handleSort,
-    currentSort
+    currentSort,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage
   } = useSearch();
-
-  const booksData = searchResults;
 
   if (isError) {
     return <ErrorState error={error || undefined} />;
@@ -32,11 +33,11 @@ export const HomeModule = () => {
       <div className="container mx-auto px-1 sm:px-2 md:px-4 lg:px-6 xl:px-8 py-1 sm:py-2 md:py-4 lg:py-6 xl:py-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <ResultsCounter 
-            count={booksData?.data?.length} 
+            count={allBooks.length} 
             isLoading={isLoading} 
           />
           
-          {booksData?.data && booksData.data.length > 0 && (
+          {allBooks.length > 0 && (
             <div className="w-full sm:w-auto">
               <SortDropdown 
                 onSortChange={handleSort}
@@ -51,15 +52,15 @@ export const HomeModule = () => {
           <LoadingState />
         ) : (
           <>
-            {booksData?.data && booksData.data.length > 0 && (
-              <BooksGrid books={booksData.data} />
-            )}
-
-            {booksData && booksData.data && booksData.data.length > 0 && (
-              <PaginationWrapper
-                initialPage={1}
-                hasMore={booksData.hasMore}
-              />
+            {allBooks.length > 0 && (
+              <InfiniteScrollWrapper
+                hasNextPage={hasNextPage}
+                isFetchingNextPage={isFetchingNextPage}
+                fetchNextPage={fetchNextPage}
+                threshold={200}
+              >
+                <BooksGrid books={allBooks} className="mb-8" />
+              </InfiniteScrollWrapper>
             )}
 
             {isNotFound && (
@@ -70,7 +71,7 @@ export const HomeModule = () => {
               </div>
             )}
 
-            {!isNotFound && booksData && booksData.data && booksData.data.length === 0 && (
+            {!isNotFound && allBooks.length === 0 && (
               <EmptyState />
             )}
           </>

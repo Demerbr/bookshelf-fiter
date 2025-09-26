@@ -5,14 +5,15 @@ import { useFavorites } from "@/hooks/useFavorites";
 
 interface BooksGridProps {
   books: Book[];
+  className?: string;
 }
 
-export function BooksGrid({ books }: BooksGridProps) {
+export function BooksGrid({ books, className = "" }: BooksGridProps) {
   const { toggleFavorite, isFavorite } = useFavorites();
 
   return (
     <ErrorBoundary>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 md:gap-4 mb-8 max-w-xl mx-auto px-1 sm:px-2 md:px-4">
+      <div className={`grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 md:gap-4 max-w-xl mx-auto px-1 sm:px-2 md:px-4 ${className}`}>
         {books.map((book) => (
           <BookCard key={book.id} book={book}>
             <BookCardImage 
