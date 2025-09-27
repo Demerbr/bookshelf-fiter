@@ -1,0 +1,73 @@
+{
+  "header": {
+    "searchPlaceholder": "Pesquisar livros...",
+    "favorites": "Favoritos",
+    "cart": "Carrinho",
+    "menu": "Menu"
+  },
+  "favorites": {
+    "title": "Meus Favoritos",
+    "count": "{{count}} livro favorito",
+    "count_other": "{{count}} livros favoritos",
+    "empty": {
+      "title": "Nenhum favorito ainda",
+      "description": "Explore nossos livros e adicione os seus favoritos para acessá-los facilmente depois.",
+      "exploreButton": "Explorar Livros"
+    }
+  },
+  "cart": {
+    "title": "Carrinho de Compras",
+    "count": "{{count}} item no seu carrinho",
+    "count_other": "{{count}} itens no seu carrinho",
+    "empty": {
+      "title": "Seu carrinho está vazio",
+      "description": "Que tal explorar nossos livros e adicionar alguns títulos ao seu carrinho?",
+      "continueButton": "Continuar Comprando"
+    }
+  },
+  "search": {
+    "resultsFound": "{{count}} resultado encontrado",
+    "resultsFound_other": "{{count}} resultados encontrados",
+    "noResults": "Nenhum resultado encontrado",
+    "noResultsDescription": "Não encontramos livros para \"{{query}}\". Tente usar palavras-chave diferentes ou verifique a ortografia.",
+    "clearSearch": "Limpar busca",
+    "searchTips": "Dicas para melhorar sua busca:",
+    "tipGeneral": "Use palavras-chave mais gerais",
+    "tipSpelling": "Verifique a ortografia",
+    "tipSynonyms": "Tente sinônimos",
+    "tipLessWords": "Use menos palavras",
+    "noBooksFound": "Nenhum livro encontrado",
+    "adjustFilters": "Tente ajustar seus filtros ou termos de busca para encontrar o que procura",
+    "forQuery": "para \"{{query}}\""
+  },
+  "sort": {
+    "placeholder": "Ordenar por...",
+    "nameAsc": "Nome A-Z",
+    "nameDesc": "Nome Z-A",
+    "priceAsc": "Preço: Menor para Maior",
+    "priceDesc": "Preço: Maior para Menor",
+    "dateAsc": "Data: Mais Antigo",
+    "dateDesc": "Data: Mais Recente"
+  },
+  "book": {
+    "by": "por",
+    "addToCart": "Adicionar ao Carrinho",
+    "inCart": "No carrinho",
+    "inCartPlural": "{{count}} no carrinho",
+    "details": {
+      "title": "Detalhes do produto",
+      "publicationYear": "Ano de Publicação",
+      "authors": "Autores",
+      "creationDate": "Data de Criação",
+      "id": "ID"
+    }
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "retry": "Tentar novamente",
+    "back": "Voltar",
+    "next": "Próximo",
+    "previous": "Anterior"
+  }
+}

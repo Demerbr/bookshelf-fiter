@@ -1,0 +1,73 @@
+{
+  "header": {
+    "searchPlaceholder": "Search books...",
+    "favorites": "Favorites",
+    "cart": "Cart",
+    "menu": "Menu"
+  },
+  "favorites": {
+    "title": "My Favorites",
+    "count": "{{count}} favorite book",
+    "count_other": "{{count}} favorite books",
+    "empty": {
+      "title": "No favorites yet",
+      "description": "Explore our books and add your favorites to access them easily later.",
+      "exploreButton": "Explore Books"
+    }
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "count": "{{count}} item in your cart",
+    "count_other": "{{count}} items in your cart",
+    "empty": {
+      "title": "Your cart is empty",
+      "description": "How about exploring our books and adding some titles to your cart?",
+      "continueButton": "Continue Shopping"
+    }
+  },
+  "search": {
+    "resultsFound": "{{count}} result found",
+    "resultsFound_other": "{{count}} results found",
+    "noResults": "No results found",
+    "noResultsDescription": "We couldn't find books for \"{{query}}\". Try using different keywords or check the spelling.",
+    "clearSearch": "Clear search",
+    "searchTips": "Tips to improve your search:",
+    "tipGeneral": "Use more general keywords",
+    "tipSpelling": "Check spelling",
+    "tipSynonyms": "Try synonyms",
+    "tipLessWords": "Use fewer words",
+    "noBooksFound": "No books found",
+    "adjustFilters": "Try adjusting your filters or search terms to find what you're looking for",
+    "forQuery": "for \"{{query}}\""
+  },
+  "sort": {
+    "placeholder": "Sort by...",
+    "nameAsc": "Name A-Z",
+    "nameDesc": "Name Z-A",
+    "priceAsc": "Price: Low to High",
+    "priceDesc": "Price: High to Low",
+    "dateAsc": "Date: Oldest",
+    "dateDesc": "Date: Newest"
+  },
+  "book": {
+    "by": "by",
+    "addToCart": "Add to Cart",
+    "inCart": "In cart",
+    "inCartPlural": "{{count}} in cart",
+    "details": {
+      "title": "Product Details",
+      "publicationYear": "Publication Year",
+      "authors": "Authors",
+      "creationDate": "Creation Date",
+      "id": "ID"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Try again",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  }
+}

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useBookCardContext } from "./bookCardContext";
 import { useCart } from "@/hooks/useCart";
+import { useTranslation } from 'react-i18next';
 
 interface BookCardActionProps {
   children?: React.ReactNode;
@@ -17,6 +18,7 @@ export function BookCardAction({
 }: BookCardActionProps) {
   const { book } = useBookCardContext();
   const { addBookToCart, isInCart, getItemQuantity } = useCart();
+  const { t } = useTranslation();
   
   const isBookInCart = isInCart(book.id);
   const quantity = getItemQuantity(book.id);
@@ -32,9 +34,9 @@ export function BookCardAction({
   const getButtonText = () => {
     if (children) return children;
     if (isBookInCart) {
-      return quantity > 1 ? `${quantity} no carrinho` : "No carrinho";
+      return quantity > 1 ? t('book.inCartPlural', { count: quantity }) : t('book.inCart');
     }
-    return "Adicionar ao Carrinho";
+    return t('book.addToCart');
   };
 
   return (

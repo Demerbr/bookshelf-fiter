@@ -8,6 +8,7 @@ import { BooksGrid } from "./components/BooksGrid";
 import { EmptyState } from "./components/EmptyState";
 import { SortDropdown } from "@/components/SortDropdown";
 import { InfiniteScrollWrapper } from "@/components/InfiniteScrollWrapper";
+import { useTranslation } from 'react-i18next';
 
 export const HomeModule = () => {
   const { 
@@ -23,6 +24,8 @@ export const HomeModule = () => {
     hasNextPage,
     isFetchingNextPage
   } = useSearch();
+  
+  const { t } = useTranslation();
 
   if (isError) {
     return <ErrorState error={error || undefined} />;
@@ -67,10 +70,10 @@ export const HomeModule = () => {
               <div className="text-center py-12">
                 <div className="bg-white rounded-lg shadow-sm border border-amazon-border p-8 max-w-md mx-auto">
                   <p className="text-amazon-text-secondary text-lg mb-2">
-                    Nenhum livro encontrado
+                    {t('search.noBooksFound')}
                   </p>
                   <p className="text-amazon-text-light">
-                    para &quot;{searchQuery}&quot;
+                    {t('search.forQuery', { query: searchQuery })}
                   </p>
                 </div>
               </div>

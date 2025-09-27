@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useBooksInfiniteQuery } from "@/queries";
-import { BooksParams } from "@/services/types/book";
+import { Book } from "@/services/types/book";
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_LIMIT = 4;

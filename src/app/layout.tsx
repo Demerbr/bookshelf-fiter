@@ -3,6 +3,7 @@ import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { Header } from "@/components/Header/header";
+import { I18nProvider } from "@/components/I18nProvider";
 
 const inter = Inter({
   variable: "--font-amazon-sans",
@@ -26,14 +27,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html>
       <body
         className={`${inter.variable} ${geistMono.variable} antialiased w-full h-full min-h-screen`}
       >
-        <Providers>
-          <Header />
-          {children}
-        </Providers>
+        <I18nProvider>
+          <Providers>
+            <Header />
+            {children}
+          </Providers>
+        </I18nProvider>
       </body>
     </html>
   );

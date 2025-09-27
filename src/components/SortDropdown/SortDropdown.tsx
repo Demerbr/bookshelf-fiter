@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 export type SortOption = {
   value: string;
@@ -10,13 +11,13 @@ export type SortOption = {
   sortOrder: 'ASC' | 'DESC';
 };
 
-const sortOptions: SortOption[] = [
-  { value: 'name-asc', label: 'Nome A-Z', sortBy: 'name', sortOrder: 'ASC' },
-  { value: 'name-desc', label: 'Nome Z-A', sortBy: 'name', sortOrder: 'DESC' },
-  { value: 'price-asc', label: 'Preço: Menor para Maior', sortBy: 'price', sortOrder: 'ASC' },
-  { value: 'price-desc', label: 'Preço: Maior para Menor', sortBy: 'price', sortOrder: 'DESC' },
-  { value: 'date-asc', label: 'Data: Mais Antigo', sortBy: 'date', sortOrder: 'ASC' },
-  { value: 'date-desc', label: 'Data: Mais Recente', sortBy: 'date', sortOrder: 'DESC' },
+const getSortOptions = (t: any): SortOption[] => [
+  { value: 'name-asc', label: t('sort.nameAsc'), sortBy: 'name', sortOrder: 'ASC' },
+  { value: 'name-desc', label: t('sort.nameDesc'), sortBy: 'name', sortOrder: 'DESC' },
+  { value: 'price-asc', label: t('sort.priceAsc'), sortBy: 'price', sortOrder: 'ASC' },
+  { value: 'price-desc', label: t('sort.priceDesc'), sortBy: 'price', sortOrder: 'DESC' },
+  { value: 'date-asc', label: t('sort.dateAsc'), sortBy: 'date', sortOrder: 'ASC' },
+  { value: 'date-desc', label: t('sort.dateDesc'), sortBy: 'date', sortOrder: 'DESC' },
 ];
 
 interface SortDropdownProps {
@@ -27,13 +28,15 @@ interface SortDropdownProps {
 
 export function SortDropdown({ onSortChange, currentSort, className = "" }: SortDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
+  const sortOptions = getSortOptions(t);
 
   const getCurrentLabel = () => {
-    if (!currentSort) return 'Ordenar por...';
+    if (!currentSort) return t('sort.placeholder');
     const option = sortOptions.find(
       opt => opt.sortBy === currentSort.sortBy && opt.sortOrder === currentSort.sortOrder
     );
-    return option?.label || 'Ordenar por...';
+    return option?.label || t('sort.placeholder');
   };
 
   const handleOptionClick = (option: SortOption) => {

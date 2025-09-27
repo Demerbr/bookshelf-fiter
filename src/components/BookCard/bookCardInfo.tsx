@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useBookCardContext } from "./bookCardContext";
+import { useTranslation } from 'react-i18next';
 
 interface BookCardInfoProps {
   showAuthor?: boolean;
@@ -9,6 +10,7 @@ interface BookCardInfoProps {
 
 export function BookCardInfo({ showAuthor = true, showYear = true, className }: BookCardInfoProps) {
   const { book, publishedYear, authorsText } = useBookCardContext();
+  const { t } = useTranslation();
   
   return (
     <div className={`space-y-2 ${className || ''}`}>
@@ -22,7 +24,7 @@ export function BookCardInfo({ showAuthor = true, showYear = true, className }: 
       {/* Autor */}
       {showAuthor && (
         <p className="text-xs text-amazon-text-secondary line-clamp-1">
-          por {authorsText}
+          {t('book.by')} {authorsText}
         </p>
       )}
 
