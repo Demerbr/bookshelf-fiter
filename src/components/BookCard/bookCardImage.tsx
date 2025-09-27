@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Heart } from "lucide-react";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { useBookCardContext } from "./bookCardContext";
 
 interface BookCardImageProps {
@@ -29,7 +29,7 @@ export function BookCardImage({
       <Link href={`/books/${book.id}`}>
         <div className="aspect-[2/3] overflow-hidden rounded-md bg-gray-100">
           {cleanImageUrl ? (
-            <Image 
+            <OptimizedImage 
               src={cleanImageUrl} 
               alt={book.name}
               width={200}

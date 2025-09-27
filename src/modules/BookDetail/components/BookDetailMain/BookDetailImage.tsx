@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { useBookDetailContext } from "../BookDetailContext";
 
 export function BookDetailImage() {
@@ -8,7 +8,7 @@ export function BookDetailImage() {
     <div className="space-y-4">
       <div className="aspect-[2/3] overflow-hidden rounded-lg bg-gray-100">
         {cleanImageUrl ? (
-          <Image 
+          <OptimizedImage 
             src={cleanImageUrl} 
             alt={book.name}
             width={400}

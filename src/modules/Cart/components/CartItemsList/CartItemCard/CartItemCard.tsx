@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 import { Trash2, Plus, Minus } from 'lucide-react';
 import { CartItem } from '@/types/cart';
 import { useCart } from '@/hooks/useCart';
@@ -36,7 +36,7 @@ export const CartItemCard = ({ item }: CartItemCardProps) => {
         {/* Imagem do livro */}
         <Link href={`/books/${item.book.id}`} className="flex-shrink-0">
           <div className="w-24 h-32 relative">
-            <Image
+            <OptimizedImage
               src={getCleanImageUrl()}
               alt={item.book.name}
               fill

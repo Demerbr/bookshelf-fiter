@@ -11,7 +11,7 @@ export type SortOption = {
   sortOrder: 'ASC' | 'DESC';
 };
 
-const getSortOptions = (t: any): SortOption[] => [
+const getSortOptions = (t: (key: string) => string): SortOption[] => [
   { value: 'name-asc', label: t('sort.nameAsc'), sortBy: 'name', sortOrder: 'ASC' },
   { value: 'name-desc', label: t('sort.nameDesc'), sortBy: 'name', sortOrder: 'DESC' },
   { value: 'price-asc', label: t('sort.priceAsc'), sortBy: 'price', sortOrder: 'ASC' },
