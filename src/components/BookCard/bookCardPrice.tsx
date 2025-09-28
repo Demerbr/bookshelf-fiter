@@ -1,21 +1,28 @@
+"use client";
+
+import { useBookCardContext } from "./bookCardContext";
+
 interface BookCardPriceProps {
-  currentPrice?: string;
-  originalPrice?: string;
   showOriginalPrice?: boolean;
   className?: string;
 }
 
+const formatPrice = (price: number): string => `R$ ${price.toFixed(2).replace('.', ',')}`;
+
 export function BookCardPrice({ 
-  currentPrice = "R$ 29,90", 
-  originalPrice = "R$ 39,90", 
   showOriginalPrice = true, 
   className 
 }: BookCardPriceProps) {
+  const { book } = useBookCardContext();
+  
+  const currentPrice = parseFloat(book.price);
+  const originalPrice = currentPrice * 1.25;
+  
   return (
     <div className={`flex items-center space-x-2 ${className || ''}`}>
-      <span className="text-lg font-bold text-amazon-text">{currentPrice}</span>
+      <span className="text-lg font-bold text-amazon-text">{formatPrice(currentPrice)}</span>
       {showOriginalPrice && (
-        <span className="text-sm text-amazon-text-light line-through">{originalPrice}</span>
+        <span className="text-sm text-amazon-text-light line-through">{formatPrice(originalPrice)}</span>
       )}
     </div>
   );

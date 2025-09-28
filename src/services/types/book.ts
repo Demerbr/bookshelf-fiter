@@ -7,6 +7,7 @@ export type Book = {
   publishedat: string;
   createdat: string;
   searchable: string;
+  price: string;
 };
 
 export type BooksListResponse = {

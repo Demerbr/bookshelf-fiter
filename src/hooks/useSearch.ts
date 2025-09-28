@@ -16,18 +16,13 @@ export function useSearch() {
   const sortBy = searchParams?.get('sortBy') as 'name' | 'price' | 'date' | null;
   const sortOrder = searchParams?.get('sortOrder') as 'ASC' | 'DESC' | null;
 
-  const updateSearchingState = () => {
-    setIsSearching(query.trim() !== "");
-  };
-
-  const buildQueryParams = () => ({
+  const queryParams = {
     limit: DEFAULT_LIMIT,
     text: query || undefined,
     sortBy: sortBy || undefined,
     sortOrder: sortOrder || undefined,
-  });
+  };
 
-  const queryParams = buildQueryParams();
   const { 
     data, 
     isLoading, 
@@ -39,7 +34,6 @@ export function useSearch() {
     isFetchingNextPage,
   } = useBooksInfiniteQuery(queryParams);
 
-  // Flatten all pages into a single array of books
   const allBooks = useMemo(() => {
     return data?.pages.flatMap((page: { data: Book[] }) => page.data) || [];
   }, [data]);
@@ -55,9 +49,8 @@ export function useSearch() {
   };
 
   const handleSearch = useCallback((newQuery: string) => {
-    const trimmedQuery = newQuery.trim();
-    navigateToSearch(trimmedQuery);
-  }, [router]);
+    navigateToSearch(newQuery.trim());
+  }, [router, sortBy, sortOrder]);
 
   const clearSearch = useCallback(() => {
     router.push('/', { scroll: false });
@@ -69,8 +62,7 @@ export function useSearch() {
     params.set('sortBy', newSortBy);
     params.set('sortOrder', newSortOrder);
     
-    const url = `/?${params.toString()}`;
-    router.push(url, { scroll: false });
+    router.push(`/?${params.toString()}`, { scroll: false });
   }, [router, query]);
 
   const isNotFound = () => {
@@ -81,7 +73,9 @@ export function useSearch() {
            allBooks.length === 0;
   };
 
-  useEffect(updateSearchingState, [query]);
+  useEffect(() => {
+    setIsSearching(query.trim() !== "");
+  }, [query]);
 
   return {
     searchQuery: query,

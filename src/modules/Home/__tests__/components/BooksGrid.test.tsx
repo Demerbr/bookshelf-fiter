@@ -24,7 +24,7 @@ jest.mock('../../../../hooks/useFavorites', () => ({
 jest.mock('../../../../components/BookCard', () => ({
   BookCard: ({ children, book }: { children: React.ReactNode; book: Book }) => (
     <div data-testid={`book-card-${book.id}`}>
-      <div data-testid={`book-title-${book.id}`}>{book.title}</div>
+      <div data-testid={`book-title-${book.id}`}>{book.name}</div>
       {children}
     </div>
   ),
@@ -51,21 +51,25 @@ jest.mock('../../../../components/ErrorBoundary', () => ({
 const mockBooks: Book[] = [
   {
     id: '1',
-    title: 'Test Book 1',
-    author: 'Author 1',
-    price: 29.99,
-    rating: 4.5,
-    imageUrl: 'https://example.com/book1.jpg',
+    name: 'Test Book 1',
+    authors: ['Author 1'],
     description: 'Description 1',
+    imagelink: 'https://example.com/book1.jpg',
+    publishedat: '2023-01-01',
+    createdat: '2023-01-01',
+    searchable: 'test book 1 author 1',
+    price: '29.99',
   },
   {
     id: '2',
-    title: 'Test Book 2',
-    author: 'Author 2',
-    price: 19.99,
-    rating: 3.8,
-    imageUrl: 'https://example.com/book2.jpg',
+    name: 'Test Book 2',
+    authors: ['Author 2'],
     description: 'Description 2',
+    imagelink: 'https://example.com/book2.jpg',
+    publishedat: '2023-01-01',
+    createdat: '2023-01-01',
+    searchable: 'test book 2 author 2',
+    price: '19.99',
   },
 ]
 

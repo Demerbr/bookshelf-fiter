@@ -26,30 +26,9 @@ export const SearchComponent = ({
   const [, setDebouncedQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const syncWithExternalValue = () => {
-    setQuery(value);
-  };
-
-  const focusAndPositionCursor = () => {
-    if (!hasValue() || !hasInputRef()) return;
-    
-    focusInput();
-    positionCursorAtEnd();
-  };
-
-  const debounceSearch = () => {
-    const timer = setTimeout(() => {
-      setDebouncedQuery(query);
-      onSearch(query);
-    }, DEBOUNCE_DELAY);
-
-    return () => clearTimeout(timer);
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const trimmedQuery = query.trim();
-    onSearch(trimmedQuery || "");
+    onSearch(query.trim() || "");
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,27 +37,28 @@ export const SearchComponent = ({
 
   const handleClear = () => {
     setQuery("");
-    executeClearAction();
+    onClear ? onClear() : onSearch("");
   };
 
-  const hasValue = () => Boolean(value);
-  const hasInputRef = () => Boolean(inputRef.current);
-  const focusInput = () => inputRef.current?.focus();
-  const positionCursorAtEnd = () => {
-    const length = value.length;
-    inputRef.current?.setSelectionRange(length, length);
-  };
-  const executeClearAction = () => {
-    if (onClear) {
-      onClear();
-    } else {
-      onSearch("");
+  useEffect(() => {
+    setQuery(value);
+  }, [value]);
+
+  useEffect(() => {
+    if (value && inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.setSelectionRange(value.length, value.length);
     }
-  };
+  }, [value]);
 
-  useEffect(syncWithExternalValue, [value]);
-  useEffect(focusAndPositionCursor, [value, hasValue, positionCursorAtEnd]);
-  useEffect(debounceSearch, [query, onSearch]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedQuery(query);
+      onSearch(query);
+    }, DEBOUNCE_DELAY);
+
+    return () => clearTimeout(timer);
+  }, [query, onSearch]);
 
   return (
     <form onSubmit={handleSubmit} className={className}>
