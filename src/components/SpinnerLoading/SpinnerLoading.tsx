@@ -1,14 +1,14 @@
 import { Loader2 } from "lucide-react";
 
-interface ModernLoadingProps {
+interface SpinnerLoadingProps {
   message?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
-export const ModernLoading = ({ 
+export const SpinnerLoading = ({ 
   message = "Carregando...", 
   size = 'lg'
-}: ModernLoadingProps) => {
+}: SpinnerLoadingProps) => {
   const sizeClasses = {
     sm: 'w-8 h-8',
     md: 'w-12 h-12',

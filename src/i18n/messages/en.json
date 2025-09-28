@@ -69,5 +69,15 @@
     "back": "Back",
     "next": "Next",
     "previous": "Previous"
+  },
+  "loading": {
+    "books": "Loading books...",
+    "bookDetails": "Loading book details...",
+    "cart": "Loading cart...",
+    "favorites": "Loading favorites...",
+    "moreBooks": "Loading more books...",
+    "search": "Searching books...",
+    "sorting": "Sorting books...",
+    "initializing": "Initializing..."
   }
 }

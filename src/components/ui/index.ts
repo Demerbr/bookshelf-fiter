@@ -1,1 +1,1 @@
-export { ModernLoading } from './ModernLoading';
+// UI components from shadcn/ui only

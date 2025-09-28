@@ -2,7 +2,7 @@
 
 import { ReactNode } from "react";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
-import { ModernLoading } from "../ui";
+import { LoadingProviderClient } from "@/components/LoadingProvider";
 
 interface InfiniteScrollWrapperProps {
   children: ReactNode;
@@ -37,10 +37,10 @@ export function InfiniteScrollWrapper({
       {isFetchingNextPage && (
         <div className="flex justify-center items-center py-8">
           {loadingComponent || (
-            <div className="flex items-center space-x-2">
-              <ModernLoading message="" size='sm' />
-              <span className="text-gray-600">Carregando mais livros...</span>
-            </div>
+            <LoadingProviderClient 
+              message="loading.moreBooks" 
+              size="md" 
+            />
           )}
         </div>
       )}
