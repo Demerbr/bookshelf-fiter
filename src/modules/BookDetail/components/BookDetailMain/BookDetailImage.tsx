@@ -13,6 +13,7 @@ export function BookDetailImage() {
             alt={book.name}
             width={400}
             height={600}
+            priority={true}
             className="w-full h-full object-cover"
           />
         ) : (

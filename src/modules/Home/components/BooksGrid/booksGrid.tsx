@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Book } from "@/services/types/book";
 import { BookCard, BookCardImage, BookCardInfo, BookCardRating, BookCardPrice, BookCardAction } from "@/components/BookCard";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
@@ -10,6 +14,15 @@ interface BooksGridProps {
 
 export function BooksGrid({ books, className = "" }: BooksGridProps) {
   const { toggleFavorite, isFavorite } = useFavorites();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (books.length > 0) {
+      books.slice(0, 3).forEach(book => {
+        router.prefetch(`/books/${book.id}`);
+      });
+    }
+  }, [books, router]);
 
   return (
     <ErrorBoundary>

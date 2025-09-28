@@ -23,7 +23,10 @@ export function BookCardAction({
   const isBookInCart = isInCart(book.id);
   const quantity = getItemQuantity(book.id);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
     if (onClick) {
       onClick();
     } else {
