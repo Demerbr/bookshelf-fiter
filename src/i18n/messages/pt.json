@@ -5,16 +5,6 @@
     "cart": "Carrinho",
     "menu": "Menu"
   },
-  "favorites": {
-    "title": "Meus Favoritos",
-    "count": "{{count}} livro favorito",
-    "count_other": "{{count}} livros favoritos",
-    "empty": {
-      "title": "Nenhum favorito ainda",
-      "description": "Explore nossos livros e adicione os seus favoritos para acessá-los facilmente depois.",
-      "exploreButton": "Explorar Livros"
-    }
-  },
   "cart": {
     "title": "Carrinho de Compras",
     "count": "{{count}} item no seu carrinho",
@@ -37,6 +27,7 @@
     }
   },
   "search": {
+    "placeholder": "Pesquisar Amazon.com.br",
     "resultsFound": "{{count}} resultado encontrado",
     "resultsFound_other": "{{count}} resultados encontrados",
     "noResults": "Nenhum resultado encontrado",
@@ -73,12 +64,23 @@
     "warranty": "Compra protegida com garantia de {{days}} dias",
     "returns": "Devolução gratuita em até {{days}} dias",
     "backToBooks": "Voltar para Livros",
+    "noCover": "Sem capa disponível",
     "details": {
       "title": "Detalhes do produto",
       "publicationYear": "Ano de Publicação",
       "authors": "Autores",
       "creationDate": "Data de Criação",
       "id": "ID"
+    }
+  },
+  "favorites": {
+    "title": "Seus Livros Favoritos",
+    "count": "{{count}} livro favorito",
+    "count_other": "{{count}} livros favoritos",
+    "empty": {
+      "title": "Nenhum livro favorito",
+      "description": "Adicione livros aos seus favoritos para vê-los aqui.",
+      "exploreButton": "Explorar Livros"
     }
   },
   "common": {

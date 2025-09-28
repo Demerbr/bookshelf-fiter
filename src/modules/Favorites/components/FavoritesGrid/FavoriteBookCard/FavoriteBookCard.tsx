@@ -11,8 +11,7 @@ export const FavoriteBookCard = ({ favorite }: FavoriteBookCardProps) => {
   const { book } = favorite;
 
   const handleAddToCart = () => {
-    // TODO: Implementar quando criarmos o sistema de carrinho
-    console.log('Adicionar ao carrinho:', book.name);
+    console.log('Add to cart:', book.name);
   };
 
   return (

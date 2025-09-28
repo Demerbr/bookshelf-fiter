@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, CircleX } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 interface SearchProps {
   onSearch: (query: string) => void;
@@ -18,10 +19,11 @@ const DEBOUNCE_DELAY = 500;
 export const SearchComponent = ({ 
   onSearch, 
   onClear,
-  placeholder = "Pesquisar Amazon.com.br",
+  placeholder,
   className = "",
   value = ""
 }: SearchProps) => {
+  const { t } = useTranslation();
   const [query, setQuery] = useState(value);
   const [, setDebouncedQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -66,7 +68,7 @@ export const SearchComponent = ({
         <Input
           ref={inputRef}
           type="text"
-          placeholder={placeholder}
+          placeholder={placeholder || t('search.placeholder')}
           value={query}
           onChange={handleInputChange}
           className="bg-white w-full rounded-r-none h-full border-amazon-border focus:border-amazon-orange focus:ring-amazon-orange pr-10 text-sm"
