@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
+import { ModernLoading } from "../ui";
 
 interface InfiniteScrollWrapperProps {
   children: ReactNode;
@@ -31,15 +32,13 @@ export function InfiniteScrollWrapper({
     <>
       {children}
       
-      {/* Sentinel element para detectar quando o usuário chega ao final */}
       <div ref={sentinelRef} className="h-4" />
       
-      {/* Loading indicator quando está carregando mais páginas */}
       {isFetchingNextPage && (
         <div className="flex justify-center items-center py-8">
           {loadingComponent || (
             <div className="flex items-center space-x-2">
-              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+              <ModernLoading message="" size='sm' />
               <span className="text-gray-600">Carregando mais livros...</span>
             </div>
           )}

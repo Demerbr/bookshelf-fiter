@@ -58,13 +58,11 @@ export function SortDropdown({ onSortChange, currentSort, className = "" }: Sort
 
       {isOpen && (
         <>
-          {/* Overlay para fechar o dropdown */}
           <div 
             className="fixed inset-0 z-10" 
             onClick={() => setIsOpen(false)}
           />
           
-          {/* Dropdown menu */}
           <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-amazon-border rounded-md shadow-lg z-20 max-h-60 overflow-y-auto">
             {sortOptions.map((option) => (
               <button

@@ -9,6 +9,7 @@ import { EmptyState } from "./components/EmptyState";
 import { SortDropdown } from "@/components/SortDropdown";
 import { InfiniteScrollWrapper } from "@/components/InfiniteScrollWrapper";
 import { useTranslation } from 'react-i18next';
+import { ModernLoading } from "@/components/ui";
 
 export const HomeModule = () => {
   const { 
@@ -52,7 +53,11 @@ export const HomeModule = () => {
         </div>
 
         {isLoading ? (
+          <div className="flex flex-col gap-12">
+
+          <ModernLoading />
           <LoadingState />
+          </div>
         ) : (
           <>
             {allBooks.length > 0 && (

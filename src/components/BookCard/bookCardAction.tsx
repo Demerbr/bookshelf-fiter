@@ -44,7 +44,7 @@ export function BookCardAction({
       className={`w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-medium text-sm py-2 rounded-md transition-colors ${className || ''}`}
       variant={variant}
       onClick={handleAddToCart}
-      disabled={isBookInCart && quantity >= 10} // Limite de 10 itens
+      disabled={isBookInCart && quantity >= 10}
     >
       {getButtonText()}
     </Button>
