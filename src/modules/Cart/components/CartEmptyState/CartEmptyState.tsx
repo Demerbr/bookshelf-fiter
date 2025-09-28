@@ -9,7 +9,7 @@ export const CartEmptyState = () => {
   return (
     <div className="bg-gray-50 min-h-screen flex items-center justify-center">
       <div className="text-center">
-        <ShoppingCart className="h-24 w-24 text-gray-300 mx-auto mb-6" />
+        <ShoppingCart className="h-24 w-24 text-gray-300 mx-auto mb-6" data-testid="shopping-cart-icon" />
         
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           {t('cart.empty.title')}

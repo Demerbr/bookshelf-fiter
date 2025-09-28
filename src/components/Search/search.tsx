@@ -95,6 +95,7 @@ export const SearchComponent = ({
           <CircleX 
             className="absolute right-10 top-1/2 -translate-y-1/2 w-4 h-4 text-amazon-text-light hover:text-amazon-text cursor-pointer z-10"
             onClick={handleClear}
+            data-testid="clear-button"
           />
         )}
         <Button
