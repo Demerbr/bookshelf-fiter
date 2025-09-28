@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
+import { useTranslation } from 'react-i18next';
 
 interface CartSummaryProps {
   totalItems: number;
@@ -8,27 +9,28 @@ interface CartSummaryProps {
 
 export const CartSummary = ({ totalItems }: CartSummaryProps) => {
   const { formatTotalPrice } = useCart();
+  const { t } = useTranslation();
 
   return (
     <div className="bg-white rounded-lg shadow-sm border p-6 h-fit">
       <h2 className="text-xl font-semibold text-gray-900 mb-6">
-        Resumo do Pedido
+        {t('cart.summary')}
       </h2>
       
       <div className="space-y-4 mb-6">
         <div className="flex justify-between text-sm text-gray-600">
-          <span>Subtotal ({totalItems} {totalItems === 1 ? 'item' : 'itens'})</span>
+          <span>{t('cart.subtotal', { count: totalItems })}</span>
           <span>{formatTotalPrice()}</span>
         </div>
         
         <div className="flex justify-between text-sm text-gray-600">
-          <span>Frete</span>
-          <span className="text-green-600">Grátis</span>
+          <span>{t('cart.shipping')}</span>
+          <span className="text-green-600">{t('cart.free')}</span>
         </div>
         
         <div className="border-t border-gray-200 pt-4">
           <div className="flex justify-between text-lg font-bold text-gray-900">
-            <span>Total</span>
+            <span>{t('cart.total')}</span>
             <span>{formatTotalPrice()}</span>
           </div>
         </div>
@@ -38,11 +40,11 @@ export const CartSummary = ({ totalItems }: CartSummaryProps) => {
         size="lg" 
         className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-medium mb-4"
       >
-        Finalizar Compra
+        {t('cart.checkout')}
       </Button>
       
       <p className="text-xs text-gray-500 text-center">
-        * Preços e disponibilidade estão sujeitos a alterações.
+        {t('cart.disclaimer')}
       </p>
     </div>
   );

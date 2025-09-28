@@ -3,7 +3,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useBooksInfiniteQuery } from "@/queries";
 import { Book } from "@/services/types/book";
 
-const DEFAULT_PAGE = 1;
 const DEFAULT_LIMIT = 4;
 
 export function useSearch() {
@@ -38,7 +37,7 @@ export function useSearch() {
     return data?.pages.flatMap((page: { data: Book[] }) => page.data) || [];
   }, [data]);
 
-  const navigateToSearch = (searchQuery: string) => {
+  const navigateToSearch = useCallback((searchQuery: string) => {
     const params = new URLSearchParams();
     if (searchQuery) params.set('q', searchQuery);
     if (sortBy) params.set('sortBy', sortBy);
@@ -46,11 +45,11 @@ export function useSearch() {
     
     const url = params.toString() ? `/?${params.toString()}` : '/';
     router.push(url, { scroll: false });
-  };
+  }, [router, sortBy, sortOrder]);
 
   const handleSearch = useCallback((newQuery: string) => {
     navigateToSearch(newQuery.trim());
-  }, [router, sortBy, sortOrder]);
+  }, [navigateToSearch]);
 
   const clearSearch = useCallback(() => {
     router.push('/', { scroll: false });

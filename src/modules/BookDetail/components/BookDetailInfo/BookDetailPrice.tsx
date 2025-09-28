@@ -1,6 +1,7 @@
 "use client";
 
 import { useBookDetailContext } from "@/modules/BookDetail/components/BookDetailContext/bookDetailContext";
+import { useTranslation } from 'react-i18next';
 
 interface BookDetailPriceProps {
   discount?: number;
@@ -14,10 +15,14 @@ export function BookDetailPrice({
   discountText = "25% OFF"
 }: BookDetailPriceProps) {
   const { book } = useBookDetailContext();
+  const { t } = useTranslation();
   
   const currentPrice = parseFloat(book.price);
   const originalPrice = currentPrice * (1 + discount / 100);
-  const savings = discount ? `Economize R$ ${(originalPrice - currentPrice).toFixed(2).replace('.', ',')} (${discount}%)` : '';
+  const savings = discount ? t('book.save', { 
+    amount: (originalPrice - currentPrice).toFixed(2).replace('.', ','), 
+    percentage: discount 
+  }) : '';
   
   return (
     <div className="space-y-2">

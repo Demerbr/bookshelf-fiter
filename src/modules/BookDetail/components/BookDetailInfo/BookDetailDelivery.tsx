@@ -1,4 +1,5 @@
 import { RotateCcw, Shield, Truck } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 interface BookDetailDeliveryProps {
   freeShippingThreshold?: string;
@@ -11,25 +12,30 @@ export function BookDetailDelivery({
   warrantyDays = 30,
   returnDays = 7
 }: BookDetailDeliveryProps) {
+  const { t } = useTranslation();
+  
   return (
     <div className="border-t pt-4">
       <div className="space-y-3">
         <div className="flex items-center space-x-2">
           <Truck className="w-5 h-5 text-green-600" />
-          <span className="text-sm text-gray-600">
-            <span className="font-medium text-green-600">Frete GRÁTIS</span> para pedidos acima de {freeShippingThreshold}
-          </span>
+          <span 
+            className="text-sm text-gray-600"
+            dangerouslySetInnerHTML={{ 
+              __html: t('book.freeShipping', { amount: freeShippingThreshold }) 
+            }}
+          />
         </div>
         <div className="flex items-center space-x-2">
           <Shield className="w-5 h-5 text-blue-600" />
           <span className="text-sm text-gray-600">
-            Compra protegida com garantia de {warrantyDays} dias
+            {t('book.warranty', { days: warrantyDays })}
           </span>
         </div>
         <div className="flex items-center space-x-2">
           <RotateCcw className="w-5 h-5 text-blue-600" />
           <span className="text-sm text-gray-600">
-            Devolução gratuita em até {returnDays} dias
+            {t('book.returns', { days: returnDays })}
           </span>
         </div>
       </div>
