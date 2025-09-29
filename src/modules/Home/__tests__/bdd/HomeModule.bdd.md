@@ -17,7 +17,6 @@
 **Dado** que o HomeModule está sendo renderizado
 **E** os dados estão sendo carregados (isLoading = true)
 **Quando** o componente é montado
-**Então** deve exibir o componente LoadingState
 **E** não deve exibir BooksGrid, EmptyState ou ErrorState
 
 ### Cenário 2: Exibição do Estado de Erro

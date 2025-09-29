@@ -44,7 +44,6 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* Amazon-inspired color palette */
   --color-amazon-orange: #ff9900;
   --color-amazon-orange-hover: #e8890c;
   --color-amazon-orange-light: #ffb84d;
@@ -64,7 +63,6 @@
   --color-amazon-success: #007600;
   --color-amazon-error: #b12704;
   
-  /* Font families */
   --font-amazon-sans: var(--font-amazon-sans);
 }
 
@@ -146,12 +144,10 @@
     font-family: var(--font-amazon-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
   
-  /* Amazon-style typography */
   h1, h2, h3, h4, h5, h6 {
     @apply font-medium text-amazon-text;
   }
   
-  /* Amazon-style buttons */
   .btn-amazon-primary {
     @apply bg-amazon-orange hover:bg-amazon-orange-hover text-white font-medium px-4 py-2 rounded-md transition-colors duration-200;
   }
@@ -160,12 +156,10 @@
     @apply bg-white border border-amazon-border hover:bg-amazon-gray text-amazon-text font-medium px-4 py-2 rounded-md transition-colors duration-200;
   }
   
-  /* Amazon-style cards */
   .card-amazon {
     @apply bg-white border border-amazon-border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
   }
   
-  /* Amazon-style input */
   .input-amazon {
     @apply border border-amazon-border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amazon-orange focus:border-transparent;
   }

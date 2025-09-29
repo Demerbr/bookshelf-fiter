@@ -16,9 +16,6 @@ jest.mock('../components/ErrorState', () => ({
   ),
 }))
 
-jest.mock('../components/LoadingState', () => ({
-  LoadingState: () => <div data-testid="loading-state">Loading...</div>,
-}))
 
 jest.mock('../components/ResultsCounter', () => ({
   ResultsCounter: ({ count, isLoading }: { count?: number; isLoading?: boolean }) => (

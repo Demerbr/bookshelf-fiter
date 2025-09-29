@@ -10,13 +10,11 @@ __tests__/
 │   ├── HomeModule.bdd.md         # Especificação do componente principal
 │   ├── BooksGrid.bdd.md          # Especificação do grid de livros
 │   ├── ResultsCounter.bdd.md      # Especificação do contador
-│   ├── LoadingState.bdd.md       # Especificação do loading
 │   ├── EmptyState.bdd.md         # Especificação do estado vazio
 │   └── ErrorState.bdd.md         # Especificação do estado de erro
 ├── components/                    # Testes dos componentes filhos
 │   ├── BooksGrid.test.tsx        # Testes AAA do grid de livros
 │   ├── ResultsCounter.test.tsx   # Testes AAA do contador
-│   ├── LoadingState.test.tsx     # Testes AAA do loading
 │   ├── EmptyState.test.tsx       # Testes AAA do estado vazio
 │   └── ErrorState.test.tsx       # Testes AAA do estado de erro
 ├── HomeModule.test.tsx           # Testes AAA do componente principal
