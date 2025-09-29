@@ -6,7 +6,7 @@ interface EmptyStateProps {
   onClearSearch?: () => void;
 }
 
-export function EmptyState({ searchQuery, onClearSearch }: EmptyStateProps) {
+export function EmptyState({ searchQuery }: EmptyStateProps) {
   const { t } = useTranslation();
   
   return (
@@ -20,7 +20,7 @@ export function EmptyState({ searchQuery, onClearSearch }: EmptyStateProps) {
         </h3>
         {searchQuery && (
           <p className="text-amazon-text-secondary mb-3">
-            for query "{searchQuery}"
+            for query &quot;{searchQuery}&quot;
           </p>
         )}
         <p className="text-amazon-text-secondary">

@@ -93,7 +93,7 @@ describe('FavoritesHeader', () => {
   describe('Props Handling', () => {
     it('should handle undefined count gracefully', () => {
       // Arrange
-      const count = undefined as any
+      const count = undefined as number | undefined
 
       // Act
       renderComponent(<FavoritesHeader count={count} />)

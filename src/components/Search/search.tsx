@@ -39,7 +39,11 @@ export const SearchComponent = ({
 
   const handleClear = () => {
     setQuery("");
-    onClear ? onClear() : onSearch("");
+    if (onClear) {
+      onClear();
+    } else {
+      onSearch("");
+    }
   };
 
   useEffect(() => {

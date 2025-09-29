@@ -93,7 +93,7 @@ describe('CartHeader', () => {
   describe('Props Handling', () => {
     it('should handle undefined itemCount gracefully', () => {
       // Arrange
-      const itemCount = undefined as any
+      const itemCount = undefined as number | undefined
 
       // Act
       renderComponent(<CartHeader itemCount={itemCount} />)

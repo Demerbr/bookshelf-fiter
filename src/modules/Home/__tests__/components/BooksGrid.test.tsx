@@ -28,7 +28,7 @@ jest.mock('../../../../components/BookCard', () => ({
       {children}
     </div>
   ),
-  BookCardImage: ({ onFavoriteClick, isFavorite }: any) => (
+  BookCardImage: ({ onFavoriteClick, isFavorite }: { onFavoriteClick?: () => void; isFavorite?: boolean }) => (
     <button 
       data-testid="favorite-button" 
       onClick={onFavoriteClick}

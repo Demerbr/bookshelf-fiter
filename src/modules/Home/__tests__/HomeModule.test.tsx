@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { HomeModule } from '../homeModule'
 // Mock do hook useSearch
@@ -6,7 +6,8 @@ jest.mock('../../../hooks/useSearch', () => ({
   useSearch: jest.fn(),
 }))
 
-const mockUseSearch = require('../../../hooks/useSearch').useSearch
+import { useSearch } from '../../../hooks/useSearch'
+const mockUseSearch = useSearch as jest.MockedFunction<typeof useSearch>
 
 // Mock dos componentes filhos
 jest.mock('../components/ErrorState', () => ({
@@ -28,7 +29,7 @@ jest.mock('../components/ResultsCounter', () => ({
 }))
 
 jest.mock('../components/BooksGrid', () => ({
-  BooksGrid: ({ books }: { books: any[] }) => (
+  BooksGrid: ({ books }: { books: Array<{ id: string; title: string }> }) => (
     <div data-testid="books-grid">
       {books.map(book => (
         <div key={book.id} data-testid={`book-${book.id}`}>
@@ -44,7 +45,7 @@ jest.mock('../components/EmptyState', () => ({
 }))
 
 jest.mock('../../../components/SortDropdown', () => ({
-  SortDropdown: ({ onSortChange, currentSort }: any) => (
+  SortDropdown: ({ onSortChange, currentSort }: { onSortChange?: (sort: string) => void; currentSort?: string }) => (
     <div data-testid="sort-dropdown">
       <button onClick={() => onSortChange('title')}>
         Sort: {currentSort}
