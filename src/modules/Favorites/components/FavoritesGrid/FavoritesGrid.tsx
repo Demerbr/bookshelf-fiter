@@ -1,6 +1,7 @@
 import { FavoriteItem } from '@/types/favorites';
 import { FavoriteBookCard } from './FavoriteBookCard';
 import { useTranslation } from 'react-i18next';
+import { useGridClasses } from '@/hooks/useGridClasses';
 
 interface FavoritesGridProps {
   items: FavoriteItem[];
@@ -8,6 +9,7 @@ interface FavoritesGridProps {
 
 export const FavoritesGrid = ({ items }: FavoritesGridProps) => {
   const { t } = useTranslation();
+  const gridClasses = useGridClasses('favorites');
   
   return (
     <div>
@@ -15,7 +17,7 @@ export const FavoritesGrid = ({ items }: FavoritesGridProps) => {
         {t('favorites.title')}
       </h2>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className={gridClasses}>
         {items.map((favorite) => (
           <FavoriteBookCard key={favorite.id} favorite={favorite} />
         ))}

@@ -1,5 +1,6 @@
 import { useCartStore } from '@/stores/useCartStore';
 import { Book } from '@/services/types/book';
+import { formatPrice } from '@/lib/formatters';
 
 export const useCart = () => {
   const {
@@ -24,10 +25,6 @@ export const useCart = () => {
 
   const updateBookQuantity = (bookId: string, quantity: number) => {
     updateQuantity(bookId, quantity);
-  };
-
-  const formatPrice = (price: number): string => {
-    return `R$ ${price.toFixed(2).replace('.', ',')}`;
   };
 
   const formatTotalPrice = (): string => {

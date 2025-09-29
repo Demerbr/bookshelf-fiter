@@ -3,6 +3,7 @@ import { BookDetailContext } from "../BookDetailContext";
 import { BookDetailBreadcrumb } from "./BookDetailBreadcrumb";
 import { BookDetailMain } from "../BookDetailMain";
 import { BookDetailDescription } from "./BookDetailDescription";
+import { PageLayout } from '@/components/Layout';
 
 interface BookDetailContentProps {
   book: Book;
@@ -30,19 +31,17 @@ export function BookDetailContent({ book }: BookDetailContentProps) {
 
   return (
     <BookDetailContext.Provider value={contextValue}>
-      <div className="bg-gray-50 min-h-screen">
-        <div className="container mx-auto px-4 py-8">
-          <BookDetailBreadcrumb />
+      <PageLayout>
+        <BookDetailBreadcrumb />
+        
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          <BookDetailMain />
           
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <BookDetailMain />
-            
-            {book.description && (
-              <BookDetailDescription />
-            )}
-          </div>
+          {book.description && (
+            <BookDetailDescription />
+          )}
         </div>
-      </div>
+      </PageLayout>
     </BookDetailContext.Provider>
   );
 }

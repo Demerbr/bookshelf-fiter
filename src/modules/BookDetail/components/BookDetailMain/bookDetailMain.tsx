@@ -1,9 +1,12 @@
 import { BookDetailImage } from "./BookDetailImage";
 import { BookDetailInfo } from "../BookDetailInfo";
+import { useGridClasses } from "@/hooks/useGridClasses";
 
 export function BookDetailMain() {
+  const gridClasses = useGridClasses('book-detail');
+  
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div className={gridClasses}>
       <BookDetailImage />
       <BookDetailInfo />
     </div>

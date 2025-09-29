@@ -2,13 +2,12 @@
 
 import { useBookDetailContext } from "@/modules/BookDetail/components/BookDetailContext/bookDetailContext";
 import { useTranslation } from 'react-i18next';
+import { formatPrice } from '@/lib/formatters';
 
 interface BookDetailPriceProps {
   discount?: number;
   discountText?: string;
 }
-
-const formatPrice = (price: number): string => `R$ ${price.toFixed(2).replace('.', ',')}`;
 
 export function BookDetailPrice({ 
   discount = 25,

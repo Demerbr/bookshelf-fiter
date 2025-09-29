@@ -8,6 +8,7 @@ import { EmptyState } from "./components/EmptyState";
 import { SortDropdown } from "@/components/SortDropdown";
 import { InfiniteScrollWrapper } from "@/components/InfiniteScrollWrapper";
 import { LoadingProviderClient } from "@/components/LoadingProvider";
+import { PageLayout } from '@/components/Layout';
 
 export function HomeModule() {
   const {
@@ -28,7 +29,7 @@ export function HomeModule() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <PageLayout>
       <div className="mb-8">
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mb-6">
           <div className="flex-1 w-full sm:w-auto">
@@ -73,6 +74,6 @@ export function HomeModule() {
           )}
         </>
       )}
-    </div>
+    </PageLayout>
   );
 }
