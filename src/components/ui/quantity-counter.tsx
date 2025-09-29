@@ -48,6 +48,7 @@ export function QuantityCounter({
         onClick={(e) => onDecrease(e)}
         disabled={quantity <= min}
         className={`${classes.button} relative z-10 active:bg-gray-100`}
+        aria-label="Decrease quantity"
       >
         <Minus className="h-4 w-4 pointer-events-none" />
       </Button>
@@ -62,6 +63,7 @@ export function QuantityCounter({
         onClick={(e) => onIncrease(e)}
         disabled={quantity >= max}
         className={`${classes.button} relative z-10 active:bg-gray-100`}
+        aria-label="Increase quantity"
       >
         <Plus className="h-4 w-4 pointer-events-none" />
       </Button>

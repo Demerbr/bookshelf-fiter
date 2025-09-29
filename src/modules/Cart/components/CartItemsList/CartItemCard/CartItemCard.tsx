@@ -94,7 +94,7 @@ export const CartItemCard = ({ item }: CartItemCardProps) => {
             onClick={handleRemove}
             className="text-red-600 hover:text-red-700 hover:bg-red-50"
           >
-            <Trash2 className="h-4 w-4 mr-1" />
+            <Trash2 className="h-4 w-4 mr-1" data-testid="trash-icon" />
             {t('cart.remove')}
           </Button>
         </div>

@@ -47,7 +47,7 @@ export function PurchaseSuccessModal({ isOpen, onClose }: PurchaseSuccessModalPr
       <SheetContent side="bottom" className="h-[85vh] max-h-[600px] flex flex-col">
         <SheetHeader className="text-center pb-4">
           <div className="flex justify-center mb-3">
-            <CheckCircle className="h-12 w-12 text-green-500" />
+            <CheckCircle className="h-12 w-12 text-green-500" data-testid="check-circle-icon" />
           </div>
           <SheetTitle className="text-xl font-bold text-gray-900">
             {t('purchase.success.title')}
@@ -61,7 +61,7 @@ export function PurchaseSuccessModal({ isOpen, onClose }: PurchaseSuccessModalPr
           {/* Resumo da Compra */}
           <div className="bg-gray-50 rounded-lg p-4">
             <h3 className="font-semibold text-gray-900 mb-3 flex items-center text-base">
-              <Package className="h-5 w-5 mr-2" />
+              <Package className="h-5 w-5 mr-2" data-testid="package-icon" />
               {t('purchase.summary')}
             </h3>
             
@@ -88,7 +88,7 @@ export function PurchaseSuccessModal({ isOpen, onClose }: PurchaseSuccessModalPr
           {/* Informações de Entrega */}
           <div className="bg-blue-50 rounded-lg p-3">
             <h3 className="font-semibold text-gray-900 mb-2 flex items-center text-sm">
-              <Truck className="h-4 w-4 mr-2" />
+              <Truck className="h-4 w-4 mr-2" data-testid="truck-icon" />
               {t('purchase.delivery.title')}
             </h3>
             
@@ -101,7 +101,7 @@ export function PurchaseSuccessModal({ isOpen, onClose }: PurchaseSuccessModalPr
           {/* Informações de Pagamento */}
           <div className="bg-green-50 rounded-lg p-3">
             <h3 className="font-semibold text-gray-900 mb-2 flex items-center text-sm">
-              <CreditCard className="h-4 w-4 mr-2" />
+              <CreditCard className="h-4 w-4 mr-2" data-testid="credit-card-icon" />
               {t('purchase.payment.title')}
             </h3>
             
