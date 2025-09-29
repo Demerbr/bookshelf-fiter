@@ -47,47 +47,171 @@ Implementar uma aplicação web ("Bookshelf") que permita:
 
 ```
 src/
-├── app/                    # App Router do Next.js
-│   ├── books/[id]/        # Página de detalhes do livro
-│   ├── cart/              # Página do carrinho
-│   ├── favorites/         # Página de favoritos
-│   ├── layout.tsx         # Layout principal
-│   ├── page.tsx          # Página inicial
-│   └── providers.tsx     # Providers (React Query, i18n)
-├── components/           # Componentes reutilizáveis
-│   ├── BookCard/         # Card do livro
-│   ├── Header/           # Cabeçalho com navegação
-│   ├── Search/           # Barra de busca
-│   ├── SortDropdown/     # Dropdown de ordenação
-│   ├── LanguageSelector/ # Seletor de idioma
-│   ├── LoadingProvider/  # Provider de loading
-│   ├── InfiniteScrollWrapper/ # Wrapper para infinite scroll
-│   └── ui/               # Componentes base (shadcn/ui)
-├── modules/              # Módulos específicos
-│   ├── BookDetail/       # Módulo de detalhes do livro
-│   ├── Cart/             # Módulo do carrinho
-│   ├── Favorites/        # Módulo de favoritos
-│   └── Home/             # Módulo da página inicial
-├── hooks/                # Custom hooks
-│   ├── useSearch.ts      # Hook de busca
-│   ├── useCart.ts        # Hook do carrinho
-│   ├── useFavorites.ts   # Hook de favoritos
-│   └── useInfiniteScroll.ts # Hook de infinite scroll
-├── stores/               # Zustand stores
-│   ├── useCartStore.ts   # Store do carrinho
-│   └── useFavoritesStore.ts # Store de favoritos
-├── queries/              # React Query hooks
-│   ├── useBooksInfiniteQuery.ts
-│   └── useBookDetailQuery.ts
-├── services/             # Camada de serviços
-│   ├── api/              # Cliente HTTP
-│   └── types/            # Tipos TypeScript
-├── i18n/                 # Internacionalização
-│   └── messages/         # Arquivos de tradução
-└── lib/                  # Utilitários
-    ├── i18n.ts          # Configuração i18n
-    ├── formatters.ts    # Formatadores
-    └── utils.ts         # Funções auxiliares
+├── app/                           # App Router do Next.js
+│   ├── books/[id]/               # Página de detalhes do livro
+│   │   ├── error.tsx             # Página de erro
+│   │   ├── loading.tsx           # Loading da página
+│   │   └── page.tsx              # Página principal
+│   ├── cart/                     # Página do carrinho
+│   │   ├── loading.tsx           # Loading do carrinho
+│   │   └── page.tsx              # Página do carrinho
+│   ├── favorites/                # Página de favoritos
+│   │   ├── loading.tsx           # Loading dos favoritos
+│   │   └── page.tsx              # Página de favoritos
+│   ├── error.tsx                 # Página de erro global
+│   ├── favicon.ico               # Favicon
+│   ├── globals.css               # Estilos globais
+│   ├── layout.tsx                # Layout principal
+│   ├── loading.tsx               # Loading global
+│   ├── page.tsx                  # Página inicial
+│   └── providers.tsx             # Providers (React Query, i18n)
+├── components/                   # Componentes reutilizáveis
+│   ├── __tests__/                # Testes de componentes
+│   │   └── Search.test.tsx       # Teste do componente Search
+│   ├── BookActions/              # Ações do livro (favoritar, carrinho)
+│   │   ├── BookActions.tsx       # Componente principal
+│   │   └── index.ts              # Exportações
+│   ├── BookCard/                 # Card do livro
+│   │   ├── bookCard.tsx          # Componente principal
+│   │   ├── bookCardAction.tsx    # Ações do card
+│   │   ├── bookCardContext.tsx   # Contexto do card
+│   │   ├── bookCardImage.tsx     # Imagem do livro
+│   │   ├── bookCardInfo.tsx      # Informações do livro
+│   │   ├── bookCardPrice.tsx     # Preço do livro
+│   │   ├── bookCardRating.tsx    # Avaliação do livro
+│   │   └── index.ts              # Exportações
+│   ├── EmptyState/               # Estado vazio
+│   │   ├── EmptyState.tsx        # Componente principal
+│   │   └── index.ts              # Exportações
+│   ├── ErrorBoundary/            # Boundary de erro
+│   │   └── ErrorBoundary.tsx     # Componente principal
+│   ├── ErrorState/               # Estado de erro
+│   │   ├── ErrorState.tsx        # Componente principal
+│   │   └── index.ts              # Exportações
+│   ├── ErrorTest/                # Teste de erro
+│   │   └── ErrorTest.tsx         # Componente de teste
+│   ├── examples/                 # Exemplos de componentes
+│   ├── Header/                   # Cabeçalho com navegação
+│   │   ├── header.tsx            # Componente principal
+│   │   └── index.ts              # Exportações
+│   ├── I18nProvider.tsx          # Provider de internacionalização
+│   ├── InfiniteScrollWrapper/    # Wrapper para infinite scroll
+│   │   ├── InfiniteScrollWrapper.tsx # Componente principal
+│   │   └── index.ts              # Exportações
+│   ├── LanguageSelector/         # Seletor de idioma
+│   │   ├── LanguageSelector.tsx  # Componente principal
+│   │   └── index.ts              # Exportações
+│   ├── Layout/                   # Layout de página
+│   │   ├── PageLayout.tsx        # Layout principal
+│   │   └── index.ts              # Exportações
+│   ├── LoadingProvider/          # Provider de loading
+│   │   ├── __tests__/            # Testes do provider
+│   │   │   ├── LoadingProviderClient.test.tsx
+│   │   │   └── LoadingProviderServer.test.tsx
+│   │   ├── index.ts              # Exportações
+│   │   ├── LoadingProviderClient.tsx # Provider cliente
+│   │   └── LoadingProviderServer.tsx # Provider servidor
+│   ├── Search/                   # Barra de busca
+│   │   ├── __tests__/            # Testes do componente
+│   │   │   ├── Search.bdd.md     # Documentação BDD
+│   │   │   └── Search.test.tsx   # Teste do componente
+│   │   ├── index.ts              # Exportações
+│   │   └── search.tsx            # Componente principal
+│   ├── SortDropdown/             # Dropdown de ordenação
+│   │   ├── SortDropdown.tsx      # Componente principal
+│   │   └── index.ts              # Exportações
+│   ├── SpinnerLoading/           # Spinner de loading
+│   │   ├── __tests__/            # Testes do spinner
+│   │   │   └── SpinnerLoading.test.tsx
+│   │   ├── index.ts              # Exportações
+│   │   └── SpinnerLoading.tsx    # Componente principal
+│   └── ui/                       # Componentes base (shadcn/ui)
+│       ├── __tests__/            # Testes dos componentes UI
+│       ├── button.tsx            # Botão
+│       ├── dropdown-menu.tsx     # Menu dropdown
+│       ├── index.ts              # Exportações
+│       ├── input.tsx             # Input
+│       ├── optimized-image.tsx    # Imagem otimizada
+│       └── sheet.tsx             # Sheet/Modal
+├── contexts/                     # Contextos React (vazio)
+├── hooks/                        # Custom hooks
+│   ├── index.ts                  # Exportações
+│   ├── useCart.ts                # Hook do carrinho
+│   ├── useFavorites.ts            # Hook de favoritos
+│   ├── useGridClasses.ts         # Hook para classes de grid
+│   ├── useInfiniteScroll.ts      # Hook de infinite scroll
+│   └── useSearch.ts              # Hook de busca
+├── i18n/                         # Internacionalização
+│   └── messages/                 # Arquivos de tradução
+│       ├── en.json               # Traduções em inglês
+│       ├── index.ts              # Exportações
+│       └── pt.json               # Traduções em português
+├── interfaces/                   # Interfaces TypeScript
+│   └── bookDetailPageProps.ts    # Props da página de detalhes
+├── lib/                          # Utilitários
+│   ├── formatters.ts             # Formatadores
+│   ├── i18n.ts                   # Configuração i18n
+│   ├── index.ts                  # Exportações
+│   └── utils.ts                  # Funções auxiliares
+├── modules/                      # Módulos específicos
+│   ├── BookDetail/               # Módulo de detalhes do livro
+│   │   ├── bookDetailModule.tsx  # Módulo principal
+│   │   ├── components/           # Componentes do módulo
+│   │   │   ├── BookDetailContent/ # Conteúdo principal
+│   │   │   ├── BookDetailContext/ # Contexto do módulo
+│   │   │   ├── BookDetailError/   # Estado de erro
+│   │   │   ├── BookDetailInfo/    # Informações do livro
+│   │   │   ├── BookDetailLoading/ # Loading do módulo
+│   │   │   └── BookDetailMain/    # Layout principal
+│   │   └── index.ts              # Exportações
+│   ├── Cart/                     # Módulo do carrinho
+│   │   ├── CartModule.tsx        # Módulo principal
+│   │   ├── components/           # Componentes do carrinho
+│   │   │   ├── CartEmptyState/   # Estado vazio
+│   │   │   ├── CartHeader/       # Cabeçalho do carrinho
+│   │   │   ├── CartItemCard/     # Card do item
+│   │   │   ├── CartItemsList/    # Lista de itens
+│   │   │   └── CartSummary/      # Resumo do carrinho
+│   │   └── index.ts              # Exportações
+│   ├── Favorites/                # Módulo de favoritos
+│   │   ├── FavoritesModule.tsx   # Módulo principal
+│   │   ├── components/           # Componentes dos favoritos
+│   │   │   ├── FavoritesEmptyState/ # Estado vazio
+│   │   │   ├── FavoritesGrid/    # Grid de favoritos
+│   │   │   └── FavoritesHeader/  # Cabeçalho dos favoritos
+│   │   └── index.ts              # Exportações
+│   └── Home/                     # Módulo da página inicial
+│       ├── __tests__/            # Testes do módulo
+│       │   ├── bdd/              # Documentação BDD
+│       │   ├── components/       # Testes de componentes
+│       │   ├── HomeModule.test.tsx # Teste principal
+│       │   └── README.md         # Documentação dos testes
+│       ├── components/           # Componentes do módulo
+│       │   ├── BooksDataProvider/ # Provider de dados
+│       │   ├── BooksGrid/        # Grid de livros
+│       │   ├── EmptyState/       # Estado vazio
+│       │   ├── ErrorState/       # Estado de erro
+│       │   ├── HomeContent/       # Conteúdo principal
+│       │   └── ResultsCounter/   # Contador de resultados
+│       ├── homeModule.tsx        # Módulo principal
+│       └── index.ts              # Exportações
+├── queries/                      # React Query hooks
+│   ├── index.ts                  # Exportações
+│   ├── useBookDetailQuery.ts     # Query de detalhes do livro
+│   └── useBooksInfiniteQuery.ts  # Query infinita de livros
+├── services/                     # Camada de serviços
+│   ├── api/                      # Cliente HTTP
+│   │   ├── axios.ts              # Configuração do Axios
+│   │   ├── books.ts              # Serviços de livros
+│   │   └── index.ts              # Exportações
+│   └── types/                    # Tipos TypeScript
+│       └── book.ts               # Tipos do livro
+├── stores/                       # Zustand stores
+│   ├── useCartStore.ts           # Store do carrinho
+│   └── useFavoritesStore.ts      # Store de favoritos
+└── types/                        # Tipos globais
+    ├── cart.ts                   # Tipos do carrinho
+    └── favorites.ts              # Tipos de favoritos
 ```
 
 ## 🚀 Como Executar Localmente
@@ -114,7 +238,6 @@ src/
    Crie um arquivo `.env.local` na raiz do projeto:
    ```env
    NEXT_PUBLIC_API_URL=https://34rwfm9yu2.us-east-2.awsapprunner.com
-   NODE_ENV=development
    ```
    
    > 💡 **Dica:** O arquivo `env.example` contém todas as variáveis necessárias com valores padrão para desenvolvimento local.
@@ -156,18 +279,16 @@ O projeto inclui um arquivo `env.example` com todas as variáveis de ambiente ne
 ```env
 # Environment Variables para Desenvolvimento Local
 NEXT_PUBLIC_API_URL=https://34rwfm9yu2.us-east-2.awsapprunner.com
-NODE_ENV=development
+# NODE_ENV=development  # Opcional
 ```
 
 ### Variáveis Disponíveis
 
-| Variável | Descrição | Padrão |
-|----------|-----------|---------|
-| `NEXT_PUBLIC_API_URL` | URL da API REST para buscar livros | `https://34rwfm9yu2.us-east-2.awsapprunner.com` |
-| `NODE_ENV` | Ambiente Node.js (development/production/test) | `development` |
-| `PORT` | Porta do servidor de desenvolvimento | `3000` |
-| `NEXT_PUBLIC_API_TIMEOUT` | Timeout da API em milissegundos | `10000` |
-| `NEXT_PUBLIC_ENABLE_API_LOGGING` | Habilitar logs da API em desenvolvimento | `true` |
+| Variável | Descrição | Padrão | Obrigatória |
+|----------|-----------|---------|-------------|
+| `NEXT_PUBLIC_API_URL` | URL da API REST para buscar livros | `https://34rwfm9yu2.us-east-2.awsapprunner.com` | ✅ |
+| `NODE_ENV` | Ambiente Node.js (development/production/test) | `development` | ❌ |
+
 
 ### Como Usar
 
