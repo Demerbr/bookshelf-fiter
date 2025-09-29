@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Heart } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { useBookCardContext } from "./bookCardContext";
@@ -26,23 +25,21 @@ export function BookCardImage({
   
   return (
     <div className={`relative mb-3 ${className || ''}`}>
-      <Link href={`/books/${book.id}`}>
-        <div className="aspect-[2/3] overflow-hidden rounded-md bg-gray-100">
-          {cleanImageUrl ? (
-            <OptimizedImage 
-              src={cleanImageUrl} 
-              alt={book.name}
-              width={200}
-              height={300}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gray-200">
-              <span className="text-gray-400 text-sm">Sem capa</span>
-            </div>
-          )}
-        </div>
-      </Link>
+      <div className="aspect-[2/3] overflow-hidden rounded-md bg-gray-100">
+        {cleanImageUrl ? (
+          <OptimizedImage 
+            src={cleanImageUrl} 
+            alt={book.name}
+            width={200}
+            height={300}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gray-200">
+            <span className="text-gray-400 text-sm">Sem capa</span>
+          </div>
+        )}
+      </div>
       
       {showFavoriteButton && (
         <button 

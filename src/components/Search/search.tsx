@@ -58,13 +58,16 @@ export const SearchComponent = ({
   }, [value]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedQuery(query);
-      onSearch(query);
-    }, DEBOUNCE_DELAY);
+    // Only trigger search if the query has actually changed and is not empty
+    if (query !== value) {
+      const timer = setTimeout(() => {
+        setDebouncedQuery(query);
+        onSearch(query);
+      }, DEBOUNCE_DELAY);
 
-    return () => clearTimeout(timer);
-  }, [query, onSearch]);
+      return () => clearTimeout(timer);
+    }
+  }, [query, onSearch, value]);
 
   return (
     <form onSubmit={handleSubmit} className={className}>

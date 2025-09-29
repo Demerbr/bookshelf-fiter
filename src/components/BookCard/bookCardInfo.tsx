@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useBookCardContext } from "./bookCardContext";
 import { useTranslation } from 'react-i18next';
 
@@ -15,11 +14,9 @@ export function BookCardInfo({ showAuthor = true, showYear = true, className }: 
   return (
     <div className={`space-y-2 ${className || ''}`}>
       {/* Título */}
-      <Link href={`/books/${book.id}`}>
-        <h3 className="font-medium text-sm text-amazon-text line-clamp-2 hover:text-amazon-orange transition-colors leading-tight">
-          {book.name}
-        </h3>
-      </Link>
+      <h3 className="font-medium text-sm text-amazon-text line-clamp-2 hover:text-amazon-orange transition-colors leading-tight">
+        {book.name}
+      </h3>
 
       {/* Autor */}
       {showAuthor && (
