@@ -34,9 +34,7 @@ export function BookDetailActions({
   const handleDecreaseQuantity = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (currentQuantity > 1) {
-      updateBookQuantity(book.id, currentQuantity - 1);
-    }
+    updateBookQuantity(book.id, currentQuantity - 1);
   };
   
   return (

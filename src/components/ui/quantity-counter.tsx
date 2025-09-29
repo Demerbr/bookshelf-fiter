@@ -15,7 +15,7 @@ export function QuantityCounter({
   quantity,
   onIncrease,
   onDecrease,
-  min = 1,
+  min = 0,
   max = 10,
   size = "md",
   className = ""
