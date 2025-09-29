@@ -1,7 +1,6 @@
 "use client";
 
 import { ReactNode } from "react";
-import Link from "next/link";
 import { Book } from "@/services/types/book";
 import { BookCardContext } from "./bookCardContext";
 
@@ -33,13 +32,9 @@ export function BookCard({ book, children, className }: BookCardProps) {
 
   return (
     <BookCardContext.Provider value={contextValue}>
-      <Link 
-        href={`/books/${book.id}`}
-        prefetch={true}
-        className={`block bg-white border border-amazon-border rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 group hover:border-amazon-orange/30 ${className || ''}`}
-      >
+      <div className={`bg-white border border-amazon-border rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 group hover:border-amazon-orange/30 ${className || ''}`}>
         {children}
-      </Link>
+      </div>
     </BookCardContext.Provider>
   );
 }

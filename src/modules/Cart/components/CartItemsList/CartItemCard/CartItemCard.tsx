@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { OptimizedImage } from '@/components/ui/optimized-image';
-import { Trash2, Plus, Minus } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import { CartItem } from '@/types/cart';
 import { useCart } from '@/hooks/useCart';
 import { Button } from '@/components/ui/button';
+import { QuantityCounter } from '@/components/ui/quantity-counter';
 import { useTranslation } from 'react-i18next';
 
 interface CartItemCardProps {
@@ -64,31 +65,20 @@ export const CartItemCard = ({ item }: CartItemCardProps) => {
             
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-600">{t('cart.quantity')}:</span>
-              <div className="flex items-center border border-gray-300 rounded-md">
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => handleQuantityChange(item.quantity - 1)}
-                  disabled={item.quantity <= 1}
-                  className="h-8 w-8 p-0"
-                >
-                  <Minus className="h-4 w-4" />
-                </Button>
-                
-                <span className="w-8 text-center font-medium border-x border-gray-300 py-1">
-                  {item.quantity}
-                </span>
-                
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => handleQuantityChange(item.quantity + 1)}
-                  disabled={item.quantity >= 10}
-                  className="h-8 w-8 p-0"
-                >
-                  <Plus className="h-4 w-4" />
-                </Button>
-              </div>
+              <QuantityCounter
+                quantity={item.quantity}
+                onIncrease={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleQuantityChange(item.quantity + 1);
+                }}
+                onDecrease={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleQuantityChange(item.quantity - 1);
+                }}
+                size="sm"
+              />
             </div>
           </div>
         </div>
