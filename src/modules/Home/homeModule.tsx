@@ -16,9 +16,9 @@ export function HomeModule() {
     isLoading,
     error,
     searchQuery,
-    setSearchQuery,
-    sortBy,
-    setSortBy,
+    handleSearch,
+    currentSort,
+    handleSort,
     hasNextPage,
     isFetchingNextPage,
     fetchNextPage,
@@ -33,7 +33,7 @@ export function HomeModule() {
       <div className="mb-8">
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mb-6">
           <div className="flex-1 w-full sm:w-auto">
-            <SortDropdown value={sortBy} onChange={setSortBy} />
+            <SortDropdown currentSort={currentSort} onSortChange={handleSort} />
           </div>
         </div>
 
@@ -42,7 +42,6 @@ export function HomeModule() {
             <ResultsCounter 
               count={allBooks.length} 
               isLoading={isLoading}
-              searchQuery={searchQuery}
             />
           </div>
         )}
@@ -70,7 +69,7 @@ export function HomeModule() {
           {allBooks.length === 0 && !isLoading && (
             <EmptyState 
               searchQuery={searchQuery}
-              onClearSearch={() => setSearchQuery('')}
+              onClearSearch={() => handleSearch('')}
             />
           )}
         </>

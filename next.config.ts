@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
     turbo: {
       root: "./",
     },
-    optimizeCss: true,
     optimizePackageImports: ['lucide-react'],
   },
   images: {

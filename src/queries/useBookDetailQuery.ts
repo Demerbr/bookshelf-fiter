@@ -20,6 +20,7 @@ export function useBookDetailQuery(id: string) {
           publishedat: "",
           createdat: "",
           searchable: "",
+          price: "0",
         };
       }
     },
