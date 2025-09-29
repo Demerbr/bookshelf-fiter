@@ -31,7 +31,7 @@ export const LanguageSelector = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="text-white hover:text-amazon-orange hover:bg-amazon-dark-light">
+        <Button variant="ghost" size="icon" className=" px-8 text-amazon-text hover:text-amazon-orange hover:bg-amazon-dark-light">
           <div className="flex items-center gap-1">
             <span className="text-lg">{currentLanguage?.flag}</span>
             <span className="text-xs font-medium">{currentLanguage?.code.toUpperCase()}</span>
