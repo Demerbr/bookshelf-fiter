@@ -24,12 +24,18 @@ jobs:
         run: npm ci
 
       - name: Run tests
+        env:
+          NEXT_PUBLIC_API_URL: https://34rwfm9yu2.us-east-2.awsapprunner.com
         run: npm test
 
       - name: Run lint
+        env:
+          NEXT_PUBLIC_API_URL: https://34rwfm9yu2.us-east-2.awsapprunner.com
         run: npm run lint
 
       - name: Build
+        env:
+          NEXT_PUBLIC_API_URL: https://34rwfm9yu2.us-east-2.awsapprunner.com
         run: npm run build
 
       - name: Deploy to Vercel
