@@ -8,11 +8,6 @@ const api = axios.create({
   },
 });
 
-// Log da URL da API para debug
-if (process.env.NODE_ENV === 'development') {
-  console.log('🔗 API Base URL:', api.defaults.baseURL);
-}
-
 // Request interceptor para logs (dev)
 api.interceptors.request.use(
   (config) => {
@@ -29,16 +24,13 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     const message = error.response?.data?.message || error.message;
+    console.error("API Error:", message);
     
     // Tratamento específico para diferentes tipos de erro
-    if (error.code === 'ECONNREFUSED' || error.code === 'ERR_NETWORK') {
-      console.error("❌ API não está disponível. Verifique se o servidor está rodando em:", api.defaults.baseURL);
-    } else if (error.response?.status === 404) {
-      console.warn("⚠️ Recurso não encontrado");
+    if (error.response?.status === 404) {
+      console.warn("Resource not found");
     } else if (error.response?.status >= 500) {
-      console.error("🔥 Erro interno do servidor");
-    } else {
-      console.error("❌ API Error:", message);
+      console.error("Server error");
     }
     
     return Promise.reject(error);
