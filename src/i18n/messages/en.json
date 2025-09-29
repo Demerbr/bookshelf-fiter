@@ -100,5 +100,28 @@
     "search": "Searching books...",
     "sorting": "Sorting books...",
     "initializing": "Initializing..."
+  },
+  "purchase": {
+    "success": {
+      "title": "Purchase Completed Successfully!",
+      "description": "Your order has been processed and you will receive a confirmation email shortly."
+    },
+    "summary": "Purchase Summary",
+    "items": "{{count}} item",
+    "items_other": "{{count}} items",
+    "delivery": {
+      "title": "Delivery Information",
+      "time": "Delivery time: 3-5 business days",
+      "tracking": "You will receive the tracking code by email",
+      "address": "Delivery to registered address"
+    },
+    "payment": {
+      "title": "Payment Information",
+      "method": "Payment processed successfully",
+      "confirmation": "Confirmation sent by email"
+    },
+    "processing": "Processing...",
+    "finish": "Finish",
+    "close": "Close"
   }
 }
