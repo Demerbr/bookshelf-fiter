@@ -9,15 +9,12 @@ interface BookDetailContentProps {
 }
 
 export function BookDetailContent({ book }: BookDetailContentProps) {
-  // Extrair ano da data de publicação
   const publishedYear = new Date(book.publishedat).getFullYear();
   
-  // Formatar autores (múltiplos autores)
   const authorsText = book.authors && book.authors.length > 1 
     ? book.authors.join(', ') 
     : book.authors[0] || '';
 
-  // Limpar URL da imagem (remover caracteres extras)
   const cleanImageUrl = book.imagelink?.replace(/\]$/, '') || '';
 
   const contextValue = {

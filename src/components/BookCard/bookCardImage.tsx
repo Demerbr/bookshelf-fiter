@@ -18,7 +18,7 @@ export function BookCardImage({
   const { book, cleanImageUrl } = useBookCardContext();
 
   const handleToggleFavorite = (e: React.MouseEvent) => {
-    e.preventDefault(); // Previne navegação quando clica no coração
+    e.preventDefault();
     e.stopPropagation();
     onFavoriteClick?.(book.id);
   };

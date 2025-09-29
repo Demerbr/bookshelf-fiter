@@ -58,7 +58,6 @@ export const SearchComponent = ({
   }, [value]);
 
   useEffect(() => {
-    // Only trigger search if the query has actually changed and is not empty
     if (query !== value) {
       const timer = setTimeout(() => {
         setDebouncedQuery(query);

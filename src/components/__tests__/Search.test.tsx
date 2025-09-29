@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, act } from '@testing-library/react'
 import { SearchComponent } from '../Search'
 
 // Mock do useTranslation
@@ -20,7 +20,9 @@ describe('SearchComponent', () => {
   })
 
   afterEach(() => {
-    jest.runOnlyPendingTimers()
+    act(() => {
+      jest.runOnlyPendingTimers()
+    })
     jest.useRealTimers()
     jest.useFakeTimers()
   })
@@ -90,8 +92,10 @@ describe('SearchComponent', () => {
       const input = screen.getByRole('textbox')
 
       // Act
-      fireEvent.change(input, { target: { value: 'test' } })
-      jest.advanceTimersByTime(500)
+      act(() => {
+        fireEvent.change(input, { target: { value: 'test' } })
+        jest.advanceTimersByTime(500)
+      })
 
       // Assert
       expect(mockOnSearch).toHaveBeenCalledWith('test')

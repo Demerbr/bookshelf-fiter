@@ -13,19 +13,16 @@ export function BookCardInfo({ showAuthor = true, showYear = true, className }: 
   
   return (
     <div className={`space-y-2 ${className || ''}`}>
-      {/* Título */}
       <h3 className="font-medium text-sm text-amazon-text line-clamp-2 hover:text-amazon-orange transition-colors leading-tight">
         {book.name}
       </h3>
 
-      {/* Autor */}
       {showAuthor && (
         <p className="text-xs text-amazon-text-secondary line-clamp-1">
           {t('book.by')} {authorsText}
         </p>
       )}
 
-      {/* Ano de publicação */}
       {showYear && (
         <p className="text-xs text-amazon-text-light">
           {publishedYear}
