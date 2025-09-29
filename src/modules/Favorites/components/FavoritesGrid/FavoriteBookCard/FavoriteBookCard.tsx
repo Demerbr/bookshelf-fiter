@@ -11,7 +11,7 @@ export const FavoriteBookCard = ({ favorite }: FavoriteBookCardProps) => {
   const { book } = favorite;
 
   const handleAddToCart = () => {
-    console.log('Add to cart:', book.name);
+    // Cart functionality will be implemented
   };
 
   return (

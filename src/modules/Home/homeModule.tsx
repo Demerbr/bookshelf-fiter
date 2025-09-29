@@ -2,7 +2,6 @@
 
 import { useSearch } from "@/hooks/useSearch";
 import { ErrorState } from "./components/ErrorState";
-// import { LoadingState } from "./components/LoadingState";
 import { ResultsCounter } from "./components/ResultsCounter";
 import { BooksGrid } from "./components/BooksGrid";
 import { EmptyState } from "./components/EmptyState";

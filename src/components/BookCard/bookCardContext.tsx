@@ -3,7 +3,6 @@
 import { createContext, useContext } from "react";
 import { Book } from "@/services/types/book";
 
-// Context para compartilhar dados do livro entre componentes
 export interface BookCardContextType {
   book: Book;
   publishedYear: number;
@@ -13,7 +12,6 @@ export interface BookCardContextType {
 
 export const BookCardContext = createContext<BookCardContextType | undefined>(undefined);
 
-// Hook para usar o contexto
 export const useBookCardContext = () => {
   const context = useContext(BookCardContext);
   if (!context) {

@@ -21,7 +21,6 @@ async function getById(id: string): Promise<BookDetailResponse> {
   return data;
 }
 
-// API Client tipado
 export const booksApi = {
   list,
   getById,

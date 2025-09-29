@@ -12,7 +12,6 @@ const resources = {
   }
 };
 
-// Initialize i18n
 if (!i18n.isInitialized) {
   i18n
     .use(initReactI18next)
@@ -22,7 +21,7 @@ if (!i18n.isInitialized) {
       fallbackLng: 'pt',
       
       interpolation: {
-        escapeValue: false // react already does escaping
+        escapeValue: false
       }
     });
 }

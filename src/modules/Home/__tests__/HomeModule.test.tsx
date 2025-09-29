@@ -45,10 +45,10 @@ jest.mock('../components/EmptyState', () => ({
 }))
 
 jest.mock('../../../components/SortDropdown', () => ({
-  SortDropdown: ({ onSortChange, currentSort }: { onSortChange?: (sort: string) => void; currentSort?: string }) => (
+  SortDropdown: ({ onSortChange, currentSort }: { onSortChange?: (sort: { sortBy: string; sortOrder: string }) => void; currentSort?: { sortBy: string; sortOrder: string } }) => (
     <div data-testid="sort-dropdown">
-      <button onClick={() => onSortChange('title')}>
-        Sort: {currentSort}
+      <button onClick={() => onSortChange?.({ sortBy: 'name', sortOrder: 'ASC' })}>
+        Sort: {currentSort?.sortBy}
       </button>
     </div>
   ),
@@ -93,7 +93,7 @@ describe('HomeModule', () => {
         isNotFound: false,
         searchQuery: '',
         handleSort: jest.fn(),
-        currentSort: 'title',
+        currentSort: { sortBy: 'name', sortOrder: 'ASC' },
         fetchNextPage: jest.fn(),
         hasNextPage: false,
         isFetchingNextPage: false,
@@ -121,7 +121,7 @@ describe('HomeModule', () => {
         isNotFound: false,
         searchQuery: '',
         handleSort: jest.fn(),
-        currentSort: 'title',
+        currentSort: { sortBy: 'name', sortOrder: 'ASC' },
         fetchNextPage: jest.fn(),
         hasNextPage: false,
         isFetchingNextPage: false,
@@ -151,7 +151,7 @@ describe('HomeModule', () => {
         isNotFound: false,
         searchQuery: '',
         handleSort: jest.fn(),
-        currentSort: 'title',
+        currentSort: { sortBy: 'name', sortOrder: 'ASC' },
         fetchNextPage: jest.fn(),
         hasNextPage: true,
         isFetchingNextPage: false,
@@ -179,7 +179,7 @@ describe('HomeModule', () => {
         isNotFound: false,
         searchQuery: '',
         handleSort: jest.fn(),
-        currentSort: 'title',
+        currentSort: { sortBy: 'name', sortOrder: 'ASC' },
         fetchNextPage: jest.fn(),
         hasNextPage: true,
         isFetchingNextPage: false,
@@ -203,7 +203,7 @@ describe('HomeModule', () => {
         isNotFound: false,
         searchQuery: '',
         handleSort: jest.fn(),
-        currentSort: 'title',
+        currentSort: { sortBy: 'name', sortOrder: 'ASC' },
         fetchNextPage: jest.fn(),
         hasNextPage: true,
         isFetchingNextPage: false,
@@ -228,7 +228,7 @@ describe('HomeModule', () => {
         isNotFound: true,
         searchQuery: 'nonexistent',
         handleSort: jest.fn(),
-        currentSort: 'title',
+        currentSort: { sortBy: 'name', sortOrder: 'ASC' },
         fetchNextPage: jest.fn(),
         hasNextPage: false,
         isFetchingNextPage: false,
@@ -251,7 +251,7 @@ describe('HomeModule', () => {
         isNotFound: false,
         searchQuery: '',
         handleSort: jest.fn(),
-        currentSort: 'title',
+        currentSort: { sortBy: 'name', sortOrder: 'ASC' },
         fetchNextPage: jest.fn(),
         hasNextPage: false,
         isFetchingNextPage: false,

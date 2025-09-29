@@ -11,23 +11,24 @@ interface BookCardProps {
   className?: string;
 }
 
-export function BookCard({ book, children, className }: BookCardProps) {
-  // Extrair ano da data de publicação
-  const publishedYear = new Date(book.publishedat).getFullYear();
-  
-  // Formatar autores (múltiplos autores)
-  const authorsText = book.authors.length > 1 
-    ? book.authors.join(', ') 
-    : book.authors[0];
+const formatAuthors = (authors: string[]): string => {
+  return authors.length > 1 ? authors.join(', ') : authors[0];
+};
 
-  // Limpar URL da imagem (remover caracteres extras)
-  const cleanImageUrl = book.imagelink?.replace(/\]$/, '') || '';
+const cleanImageUrl = (url: string): string => {
+  return url?.replace(/\]$/, '') || '';
+};
+
+export function BookCard({ book, children, className }: BookCardProps) {
+  const publishedYear = new Date(book.publishedat).getFullYear();
+  const authorsText = formatAuthors(book.authors);
+  const cleanImage = cleanImageUrl(book.imagelink);
 
   const contextValue = {
     book,
     publishedYear,
     authorsText,
-    cleanImageUrl
+    cleanImageUrl: cleanImage
   };
 
   return (

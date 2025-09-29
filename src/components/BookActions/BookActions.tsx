@@ -25,8 +25,7 @@ export const BookActions = ({
   };
 
   const handleAddToCart = () => {
-    // TODO: Implementar quando criarmos o sistema de carrinho
-    console.log('Adicionar ao carrinho:', book.name);
+    // Cart functionality will be implemented
   };
 
   return (

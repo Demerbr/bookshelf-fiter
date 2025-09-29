@@ -11,7 +11,6 @@ export const useFavorites = () => {
     isFavorite
   } = useFavoritesStore();
 
-  // Função para alternar favorito (adicionar/remover)
   const toggleFavorite = (book: Book) => {
     if (isFavorite(book.id)) {
       removeFavorite(book.id);
@@ -21,12 +20,9 @@ export const useFavorites = () => {
   };
 
   return {
-    // Estado
     favorites: items,
     favoritesCount: count,
     isEmpty: items.length === 0,
-    
-    // Ações
     addFavorite,
     removeFavorite,
     toggleFavorite,

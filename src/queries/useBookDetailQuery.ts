@@ -10,7 +10,6 @@ export function useBookDetailQuery(id: string) {
         const response = await api.books.getById(id);
         return response.data;
       } catch {
-        // Fallback para evitar quebra da UI
         return {
           id: "",
           name: "Erro ao carregar livro",
@@ -24,7 +23,7 @@ export function useBookDetailQuery(id: string) {
         };
       }
     },
-    enabled: !!id, // Só executa se tiver ID
-    staleTime: 10 * 60 * 1000, // 10 minutos (detalhes mudam menos)
+    enabled: !!id,
+    staleTime: 10 * 60 * 1000,
   });
 }

@@ -8,7 +8,6 @@ const api = axios.create({
   },
 });
 
-// Request interceptor para logs (dev)
 api.interceptors.request.use(
   (config) => {
     if (process.env.NODE_ENV === 'development') {
@@ -19,14 +18,12 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor para tratamento de erros
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     const message = error.response?.data?.message || error.message;
     console.error("API Error:", message);
     
-    // Tratamento específico para diferentes tipos de erro
     if (error.response?.status === 404) {
       console.warn("Resource not found");
     } else if (error.response?.status >= 500) {

@@ -41,21 +41,16 @@ export const useCart = () => {
   };
 
   return {
-    // Estado
     cartItems: items,
     totalItems,
     totalPrice,
     isEmpty: items.length === 0,
-    
-    // Ações
     addBookToCart,
     removeBookFromCart,
     updateBookQuantity,
     clearCart,
     isInCart,
     getItemQuantity,
-    
-    // Utilitários
     formatPrice,
     formatTotalPrice,
     getItemTotalPrice

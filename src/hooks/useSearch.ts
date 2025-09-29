@@ -5,6 +5,9 @@ import { Book } from "@/services/types/book";
 
 const DEFAULT_LIMIT = 4;
 
+type SortBy = 'name' | 'price' | 'date';
+type SortOrder = 'ASC' | 'DESC';
+
 export function useSearch() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -12,15 +15,15 @@ export function useSearch() {
 
   const query = searchParams?.get('q') ?? '';
   const hasQuery = searchParams?.has('q');
-  const sortBy = searchParams?.get('sortBy') as 'name' | 'price' | 'date' | null;
-  const sortOrder = searchParams?.get('sortOrder') as 'ASC' | 'DESC' | null;
+  const sortBy = searchParams?.get('sortBy') as SortBy | null;
+  const sortOrder = searchParams?.get('sortOrder') as SortOrder | null;
 
-  const queryParams = {
+  const queryParams = useMemo(() => ({
     limit: DEFAULT_LIMIT,
     text: query || undefined,
     sortBy: sortBy || undefined,
     sortOrder: sortOrder || undefined,
-  };
+  }), [query, sortBy, sortOrder]);
 
   const { 
     data, 
@@ -37,15 +40,19 @@ export function useSearch() {
     return data?.pages.flatMap((page: { data: Book[] }) => page.data) || [];
   }, [data]);
 
-  const navigateToSearch = useCallback((searchQuery: string) => {
+  const buildSearchUrl = useCallback((searchQuery: string, sortBy?: SortBy | null, sortOrder?: SortOrder | null) => {
     const params = new URLSearchParams();
     if (searchQuery) params.set('q', searchQuery);
     if (sortBy) params.set('sortBy', sortBy);
     if (sortOrder) params.set('sortOrder', sortOrder);
     
-    const url = params.toString() ? `/?${params.toString()}` : '/';
+    return params.toString() ? `/?${params.toString()}` : '/';
+  }, []);
+
+  const navigateToSearch = useCallback((searchQuery: string) => {
+    const url = buildSearchUrl(searchQuery, sortBy, sortOrder);
     router.push(url, { scroll: false });
-  }, [router, sortBy, sortOrder]);
+  }, [router, sortBy, sortOrder, buildSearchUrl]);
 
   const handleSearch = useCallback((newQuery: string) => {
     navigateToSearch(newQuery.trim());
@@ -55,22 +62,18 @@ export function useSearch() {
     router.push('/', { scroll: false });
   }, [router]);
 
-  const handleSort = useCallback((newSortBy: 'name' | 'price' | 'date', newSortOrder: 'ASC' | 'DESC') => {
-    const params = new URLSearchParams();
-    if (query) params.set('q', query);
-    params.set('sortBy', newSortBy);
-    params.set('sortOrder', newSortOrder);
-    
-    router.push(`/?${params.toString()}`, { scroll: false });
-  }, [router, query]);
+  const handleSort = useCallback((newSortBy: SortBy, newSortOrder: SortOrder) => {
+    const url = buildSearchUrl(query, newSortBy, newSortOrder);
+    router.push(url, { scroll: false });
+  }, [router, query, buildSearchUrl]);
 
-  const isNotFound = () => {
+  const isNotFound = useMemo(() => {
     return isSearching && 
            !isLoading && 
            !isError && 
            query.trim() !== "" &&
            allBooks.length === 0;
-  };
+  }, [isSearching, isLoading, isError, query, allBooks.length]);
 
   useEffect(() => {
     setIsSearching(query.trim() !== "");
@@ -83,7 +86,7 @@ export function useSearch() {
     handleSort,
     currentSort: sortBy && sortOrder ? { sortBy, sortOrder } : undefined,
     isSearching,
-    isNotFound: isNotFound(),
+    isNotFound,
     searchResults: { data: allBooks, hasMore: hasNextPage },
     allBooks,
     isLoading,

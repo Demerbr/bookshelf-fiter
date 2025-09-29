@@ -8,20 +8,24 @@ interface BookDetailContentProps {
   book: Book;
 }
 
+const formatAuthors = (authors: string[]): string => {
+  return authors.length > 1 ? authors.join(', ') : authors[0] || '';
+};
+
+const cleanImageUrl = (url: string): string => {
+  return url?.replace(/\]$/, '') || '';
+};
+
 export function BookDetailContent({ book }: BookDetailContentProps) {
   const publishedYear = new Date(book.publishedat).getFullYear();
-  
-  const authorsText = book.authors && book.authors.length > 1 
-    ? book.authors.join(', ') 
-    : book.authors[0] || '';
-
-  const cleanImageUrl = book.imagelink?.replace(/\]$/, '') || '';
+  const authorsText = formatAuthors(book.authors);
+  const cleanImage = cleanImageUrl(book.imagelink);
 
   const contextValue = {
     book,
     publishedYear,
     authorsText,
-    cleanImageUrl
+    cleanImageUrl: cleanImage
   };
 
   return (
