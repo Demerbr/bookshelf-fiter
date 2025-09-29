@@ -58,12 +58,12 @@ export const CartItemCard = ({ item }: CartItemCardProps) => {
             {t('book.by')} {getAuthorsText()}
           </p>
           
-          <div className="flex items-center gap-4">
+          <div className="flex ml-4 items-start gap-4">
             <div className="text-sm text-gray-600">
               {t('cart.price')}: <span className="font-medium">{formatPrice(item.unitPrice)}</span>
             </div>
             
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-1">
               <span className="text-sm text-gray-600">{t('cart.quantity')}:</span>
               <QuantityCounter
                 quantity={item.quantity}
