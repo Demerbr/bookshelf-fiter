@@ -83,13 +83,11 @@ src/
 │   ├── EmptyState/               # Estado vazio
 │   │   ├── EmptyState.tsx        # Componente principal
 │   │   └── index.ts              # Exportações
-│   ├── ErrorBoundary/            # Boundary de erro
-│   │   └── ErrorBoundary.tsx     # Componente principal
+│   ├── ErrorBoundary.tsx         # Boundary de erro
 │   ├── ErrorState/               # Estado de erro
 │   │   ├── ErrorState.tsx        # Componente principal
 │   │   └── index.ts              # Exportações
-│   ├── ErrorTest/                # Teste de erro
-│   │   └── ErrorTest.tsx         # Componente de teste
+│   ├── ErrorTest.tsx             # Teste de erro
 │   ├── examples/                 # Exemplos de componentes
 │   ├── Header/                   # Cabeçalho com navegação
 │   │   ├── header.tsx            # Componente principal
@@ -111,6 +109,11 @@ src/
 │   │   ├── index.ts              # Exportações
 │   │   ├── LoadingProviderClient.tsx # Provider cliente
 │   │   └── LoadingProviderServer.tsx # Provider servidor
+│   ├── PurchaseSuccessModal/     # Modal de sucesso da compra
+│   │   ├── __tests__/            # Testes do modal
+│   │   │   └── PurchaseSuccessModal.test.tsx
+│   │   ├── index.ts              # Exportações
+│   │   └── PurchaseSuccessModal.tsx # Componente principal
 │   ├── Search/                   # Barra de busca
 │   │   ├── __tests__/            # Testes do componente
 │   │   │   ├── Search.bdd.md     # Documentação BDD
@@ -127,17 +130,21 @@ src/
 │   │   └── SpinnerLoading.tsx    # Componente principal
 │   └── ui/                       # Componentes base (shadcn/ui)
 │       ├── __tests__/            # Testes dos componentes UI
+│       │   └── quantity-counter.test.tsx
 │       ├── button.tsx            # Botão
 │       ├── dropdown-menu.tsx     # Menu dropdown
 │       ├── index.ts              # Exportações
 │       ├── input.tsx             # Input
-│       ├── optimized-image.tsx    # Imagem otimizada
+│       ├── optimized-image.tsx   # Imagem otimizada
+│       ├── quantity-counter.tsx  # Contador de quantidade
 │       └── sheet.tsx             # Sheet/Modal
 ├── contexts/                     # Contextos React (vazio)
 ├── hooks/                        # Custom hooks
+│   ├── __tests__/                # Testes dos hooks
+│   │   └── useCart.test.ts       # Teste do hook useCart
 │   ├── index.ts                  # Exportações
 │   ├── useCart.ts                # Hook do carrinho
-│   ├── useFavorites.ts            # Hook de favoritos
+│   ├── useFavorites.ts           # Hook de favoritos
 │   ├── useGridClasses.ts         # Hook para classes de grid
 │   ├── useInfiniteScroll.ts      # Hook de infinite scroll
 │   └── useSearch.ts              # Hook de busca
@@ -158,19 +165,49 @@ src/
 │   │   ├── bookDetailModule.tsx  # Módulo principal
 │   │   ├── components/           # Componentes do módulo
 │   │   │   ├── BookDetailContent/ # Conteúdo principal
+│   │   │   │   ├── BookDetailBreadcrumb.tsx
+│   │   │   │   ├── bookDetailContent.tsx
+│   │   │   │   ├── BookDetailDescription.tsx
+│   │   │   │   └── index.ts
 │   │   │   ├── BookDetailContext/ # Contexto do módulo
+│   │   │   │   ├── bookDetailContext.tsx
+│   │   │   │   └── index.ts
 │   │   │   ├── BookDetailError/   # Estado de erro
+│   │   │   │   ├── bookDetailError.tsx
+│   │   │   │   └── index.ts
 │   │   │   ├── BookDetailInfo/    # Informações do livro
+│   │   │   │   ├── BookDetailActions.tsx
+│   │   │   │   ├── BookDetailDelivery.tsx
+│   │   │   │   ├── BookDetailDetails.tsx
+│   │   │   │   ├── BookDetailHeader.tsx
+│   │   │   │   ├── bookDetailInfo.tsx
+│   │   │   │   ├── BookDetailPrice.tsx
+│   │   │   │   ├── BookDetailRating.tsx
+│   │   │   │   └── index.ts
 │   │   │   ├── BookDetailLoading/ # Loading do módulo
+│   │   │   │   ├── __tests__/     # Testes do loading
+│   │   │   │   ├── bookDetailLoading.tsx
+│   │   │   │   └── index.ts
 │   │   │   └── BookDetailMain/    # Layout principal
+│   │   │       ├── BookDetailImage.tsx
+│   │   │       ├── bookDetailMain.tsx
+│   │   │       └── index.ts
 │   │   └── index.ts              # Exportações
 │   ├── Cart/                     # Módulo do carrinho
+│   │   ├── __tests__/            # Testes do módulo
+│   │   │   └── CartFlow.bdd.md   # Documentação BDD do fluxo
 │   │   ├── CartModule.tsx        # Módulo principal
 │   │   ├── components/           # Componentes do carrinho
 │   │   │   ├── CartEmptyState/   # Estado vazio
 │   │   │   ├── CartHeader/       # Cabeçalho do carrinho
-│   │   │   ├── CartItemCard/     # Card do item
+│   │   │   ├── CartItemCard/     # Card do item (dentro de CartItemsList)
 │   │   │   ├── CartItemsList/    # Lista de itens
+│   │   │   │   ├── __tests__/    # Testes da lista
+│   │   │   │   ├── CartItemCard/ # Card do item do carrinho
+│   │   │   │   │   ├── __tests__/ # Testes do card
+│   │   │   │   │   └── CartItemCard.tsx
+│   │   │   │   ├── CartItemsList.tsx
+│   │   │   │   └── index.ts
 │   │   │   └── CartSummary/      # Resumo do carrinho
 │   │   └── index.ts              # Exportações
 │   ├── Favorites/                # Módulo de favoritos
@@ -187,12 +224,18 @@ src/
 │       │   ├── HomeModule.test.tsx # Teste principal
 │       │   └── README.md         # Documentação dos testes
 │       ├── components/           # Componentes do módulo
-│       │   ├── BooksDataProvider/ # Provider de dados
 │       │   ├── BooksGrid/        # Grid de livros
+│       │   │   ├── booksGrid.tsx
+│       │   │   └── index.ts
 │       │   ├── EmptyState/       # Estado vazio
+│       │   │   ├── emptyState.tsx
+│       │   │   └── index.ts
 │       │   ├── ErrorState/       # Estado de erro
-│       │   ├── HomeContent/       # Conteúdo principal
+│       │   │   ├── errorState.tsx
+│       │   │   └── index.ts
 │       │   └── ResultsCounter/   # Contador de resultados
+│       │       ├── index.ts
+│       │       └── resultsCounter.tsx
 │       ├── homeModule.tsx        # Módulo principal
 │       └── index.ts              # Exportações
 ├── queries/                      # React Query hooks
@@ -207,6 +250,8 @@ src/
 │   └── types/                    # Tipos TypeScript
 │       └── book.ts               # Tipos do livro
 ├── stores/                       # Zustand stores
+│   ├── __tests__/                # Testes dos stores
+│   │   └── useCartStore.test.ts  # Teste do store do carrinho
 │   ├── useCartStore.ts           # Store do carrinho
 │   └── useFavoritesStore.ts      # Store de favoritos
 └── types/                        # Tipos globais

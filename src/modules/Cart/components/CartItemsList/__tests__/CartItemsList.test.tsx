@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { CartItemsList } from '../CartItemsList'
 import { CartItem } from '@/types/cart'
 import { Book } from '@/services/types/book'

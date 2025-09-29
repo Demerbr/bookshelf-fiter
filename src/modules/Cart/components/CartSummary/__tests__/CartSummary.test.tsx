@@ -25,7 +25,7 @@ jest.mock('../../../../../hooks/useCart', () => ({
 }))
 
 jest.mock('../../../../../components/PurchaseSuccessModal', () => ({
-  PurchaseSuccessModal: ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => (
+  PurchaseSuccessModal: ({ isOpen }: { isOpen: boolean }) => (
     isOpen ? <div data-testid="purchase-modal">Purchase Modal</div> : null
   )
 }))
