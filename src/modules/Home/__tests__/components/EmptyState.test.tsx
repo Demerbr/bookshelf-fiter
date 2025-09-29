@@ -11,7 +11,7 @@ describe('EmptyState', () => {
       render(<EmptyState />)
 
       // Assert
-      expect(screen.getByText('search.noBooksFound')).toBeInTheDocument()
+      expect(screen.getByText('No books found')).toBeInTheDocument()
     })
 
     it('should have proper styling', () => {

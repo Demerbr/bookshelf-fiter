@@ -49,7 +49,7 @@ export function HomeModule() {
       </div>
 
       {isLoading ? (
-        <div className="min-h-[400px] flex flex-col items-center justify-center px-4">
+        <div data-testid="loading-state" className="min-h-[400px] flex flex-col items-center justify-center px-4">
           <LoadingProviderClient 
             message="loading.books" 
             size="xl" 

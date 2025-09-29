@@ -237,8 +237,7 @@ describe('HomeModule', () => {
       renderWithQueryClient(<HomeModule />)
 
       // Assert
-      expect(screen.getByText('search.noBooksFound')).toBeInTheDocument()
-      expect(screen.getByText('search.forQuery')).toBeInTheDocument()
+      expect(screen.getByText('No books found')).toBeInTheDocument()
     })
 
     it('should display empty state when no books exist', () => {

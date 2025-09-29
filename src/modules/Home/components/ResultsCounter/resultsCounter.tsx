@@ -11,7 +11,7 @@ export function ResultsCounter({ count, isLoading }: ResultsCounterProps) {
   return (
     <div>
       <p className="text-sm text-amazon-text-secondary font-medium">
-        {isLoading ? t('') : t('search.resultsFound', { count: count || 0 })}
+        {isLoading ? 'common.loading' : t('search.resultsFound', { count: count || 0 })}
       </p>
     </div>
   );

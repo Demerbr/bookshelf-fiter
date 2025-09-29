@@ -49,7 +49,7 @@ describe('SearchComponent', () => {
       render(<SearchComponent onSearch={mockOnSearch} />)
 
       // Assert
-      expect(screen.getByPlaceholderText('Pesquisar Amazon.com.br')).toBeInTheDocument()
+      expect(screen.getByPlaceholderText('search.placeholder')).toBeInTheDocument()
     })
 
     it('should display custom placeholder', () => {

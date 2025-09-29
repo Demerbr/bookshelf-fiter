@@ -1,5 +1,12 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import { SearchComponent } from '../search'
+import { SearchComponent } from '../Search'
+
+// Mock do useTranslation
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key === 'search.placeholder' ? 'search.placeholder' : key,
+  }),
+}))
 
 // Mock do setTimeout para controlar debounce
 jest.useFakeTimers()
@@ -49,7 +56,7 @@ describe('SearchComponent', () => {
       render(<SearchComponent onSearch={mockOnSearch} />)
 
       // Assert
-      expect(screen.getByPlaceholderText('Pesquisar Amazon.com.br')).toBeInTheDocument()
+      expect(screen.getByPlaceholderText('search.placeholder')).toBeInTheDocument()
     })
 
     it('should display custom placeholder', () => {
@@ -143,7 +150,7 @@ describe('SearchComponent', () => {
       fireEvent.change(input, { target: { value: 'test' } })
 
       // Assert
-      expect(screen.getByRole('img', { hidden: true })).toBeInTheDocument()
+      expect(screen.getByTestId('clear-button')).toBeInTheDocument()
     })
 
     it('should hide clear button when input is empty', () => {
@@ -151,7 +158,7 @@ describe('SearchComponent', () => {
       render(<SearchComponent onSearch={mockOnSearch} />)
 
       // Assert
-      expect(screen.queryByRole('img', { hidden: true })).not.toBeInTheDocument()
+      expect(screen.queryByTestId('clear-button')).not.toBeInTheDocument()
     })
 
     it('should clear input when clear button is clicked', () => {
@@ -161,7 +168,7 @@ describe('SearchComponent', () => {
 
       // Act
       fireEvent.change(input, { target: { value: 'test' } })
-      const clearButton = screen.getByRole('img', { hidden: true })
+      const clearButton = screen.getByTestId('clear-button')
       fireEvent.click(clearButton)
 
       // Assert
@@ -175,7 +182,7 @@ describe('SearchComponent', () => {
 
       // Act
       fireEvent.change(input, { target: { value: 'test' } })
-      const clearButton = screen.getByRole('img', { hidden: true })
+      const clearButton = screen.getByTestId('clear-button')
       fireEvent.click(clearButton)
 
       // Assert
@@ -189,7 +196,7 @@ describe('SearchComponent', () => {
 
       // Act
       fireEvent.change(input, { target: { value: 'test' } })
-      const clearButton = screen.getByRole('img', { hidden: true })
+      const clearButton = screen.getByTestId('clear-button')
       fireEvent.click(clearButton)
 
       // Assert
