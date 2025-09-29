@@ -45,3 +45,5 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-args: ${{ github.ref == 'refs/heads/main' && '--prod' || '' }}
+        env:
+          NEXT_PUBLIC_API_URL: https://34rwfm9yu2.us-east-2.awsapprunner.com
