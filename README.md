@@ -62,7 +62,12 @@ src/
    Crie um arquivo `.env.local` na raiz do projeto:
    ```env
    NEXT_PUBLIC_API_URL=http://localhost:3000
+   NODE_ENV=development
    ```
+   
+   **Para produção/CI-CD:**
+   - Configure a variável `NEXT_PUBLIC_API_URL` com a URL da sua API externa
+   - Exemplo: `https://api.bookshelf.com` ou `https://bookshelf-api.herokuapp.com`
 
 3. **Executar o servidor de desenvolvimento:**
    ```bash
